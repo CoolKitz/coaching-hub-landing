@@ -8,7 +8,7 @@ import {
   ArrowRight, Star, Mail, Bell, Palette, Menu, 
   XIcon, Send, User, Phone, Dumbbell, LucideIcon
 } from 'lucide-react'
-import { motion } from 'framer-motion'
+import { motion, AnimatePresence } from 'framer-motion'
 
 const fadeInUp = { hidden: { opacity: 0, y: 30 }, visible: { opacity: 1, y: 0 } }
 const staggerContainer = { hidden: { opacity: 0 }, visible: { opacity: 1, transition: { staggerChildren: 0.1 } } }
@@ -54,11 +54,448 @@ const faqs = [
   { q: 'Come funziona il supporto?', a: "Supporto via email con risposta entro 24 ore lavorative. Per i piani Business ed Enterprise c'è anche supporto prioritario." }
 ]
 
+// ============================================
+// MODAL DOCUMENTI LEGALI
+// ============================================
+
+type ModalType = 'privacy' | 'cookie' | 'termini' | null
+
+interface LegalModalProps {
+  isOpen: boolean
+  onClose: () => void
+  title: string
+  children: React.ReactNode
+}
+
+const LegalModal = ({ isOpen, onClose, title, children }: LegalModalProps) => {
+  return (
+    <AnimatePresence>
+      {isOpen && (
+        <>
+          {/* Backdrop */}
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            onClick={onClose}
+            className="fixed inset-0 bg-slate-950/90 backdrop-blur-sm z-[100]"
+          />
+          
+          {/* Modal */}
+          <motion.div
+            initial={{ opacity: 0, scale: 0.95, y: 20 }}
+            animate={{ opacity: 1, scale: 1, y: 0 }}
+            exit={{ opacity: 0, scale: 0.95, y: 20 }}
+            transition={{ duration: 0.2 }}
+            className="fixed inset-4 md:inset-10 lg:inset-20 z-[101] flex items-center justify-center"
+          >
+            <div className="relative w-full h-full max-w-4xl mx-auto card-glass rounded-3xl overflow-hidden flex flex-col">
+              {/* Header */}
+              <div className="flex items-center justify-between p-6 border-b border-white/10">
+                <h2 className="font-display text-xl md:text-2xl font-bold">{title}</h2>
+                <button
+                  onClick={onClose}
+                  className="p-2 rounded-full hover:bg-white/10 transition-colors"
+                >
+                  <XIcon className="w-6 h-6" />
+                </button>
+              </div>
+              
+              {/* Content */}
+              <div className="flex-1 overflow-y-auto p-6 md:p-8">
+                <div className="prose prose-invert prose-sm md:prose-base max-w-none">
+                  {children}
+                </div>
+              </div>
+              
+              {/* Footer */}
+              <div className="p-6 border-t border-white/10">
+                <button
+                  onClick={onClose}
+                  className="btn-primary w-full md:w-auto"
+                >
+                  Ho capito, chiudi
+                </button>
+              </div>
+            </div>
+          </motion.div>
+        </>
+      )}
+    </AnimatePresence>
+  )
+}
+
+// Contenuto Privacy Policy
+const PrivacyPolicyContent = () => (
+  <div className="space-y-6 text-white/80">
+    <p className="text-white/60 text-sm">Ultimo aggiornamento: Gennaio 2026</p>
+    
+    <section>
+      <h3 className="text-lg font-display font-bold text-white mb-3">1. Titolare del Trattamento</h3>
+      <p>Il Titolare del trattamento dei dati personali è:</p>
+      <ul className="list-none mt-2 space-y-1">
+        <li><strong className="text-white">Nome:</strong> Mauro Vallotti</li>
+        <li><strong className="text-white">Indirizzo:</strong> Via Roma 2, 10040 Rivalta di Torino (TO), Italia</li>
+        <li><strong className="text-white">Email:</strong> coachinghubinfo@gmail.com</li>
+        <li><strong className="text-white">Codice Fiscale:</strong> VLLMRA85S01L219P</li>
+      </ul>
+    </section>
+
+    <section>
+      <h3 className="text-lg font-display font-bold text-white mb-3">2. Tipologie di Dati Raccolti</h3>
+      <p>I dati personali raccolti dal sito, in modo autonomo o tramite terze parti, includono:</p>
+      <ul className="list-disc list-inside mt-2 space-y-1">
+        <li>Dati di navigazione (indirizzo IP, browser, sistema operativo, pagine visitate)</li>
+        <li>Dati forniti volontariamente dall&apos;utente (nome, cognome, email, telefono, messaggi inviati tramite il form di contatto)</li>
+        <li>Cookie e tecnologie simili (vedi Cookie Policy)</li>
+      </ul>
+    </section>
+
+    <section>
+      <h3 className="text-lg font-display font-bold text-white mb-3">3. Finalità del Trattamento</h3>
+      <p>I dati personali sono trattati per le seguenti finalità:</p>
+      <ul className="list-disc list-inside mt-2 space-y-1">
+        <li><strong className="text-white">Rispondere alle richieste:</strong> gestire le richieste di informazioni inviate tramite il form di contatto</li>
+        <li><strong className="text-white">Erogazione del servizio:</strong> fornire accesso alla piattaforma Coaching Hub agli utenti registrati</li>
+        <li><strong className="text-white">Comunicazioni di servizio:</strong> inviare comunicazioni tecniche relative al servizio acquistato</li>
+        <li><strong className="text-white">Adempimenti legali:</strong> adempiere agli obblighi previsti dalla legge</li>
+        <li><strong className="text-white">Miglioramento del servizio:</strong> analisi statistiche aggregate per migliorare l&apos;esperienza utente</li>
+      </ul>
+    </section>
+
+    <section>
+      <h3 className="text-lg font-display font-bold text-white mb-3">4. Base Giuridica del Trattamento</h3>
+      <p>Il trattamento dei dati personali si basa su:</p>
+      <ul className="list-disc list-inside mt-2 space-y-1">
+        <li><strong className="text-white">Consenso:</strong> per l&apos;invio di comunicazioni tramite il form di contatto (Art. 6.1.a GDPR)</li>
+        <li><strong className="text-white">Esecuzione contrattuale:</strong> per l&apos;erogazione dei servizi richiesti (Art. 6.1.b GDPR)</li>
+        <li><strong className="text-white">Obbligo legale:</strong> per adempiere a obblighi di legge (Art. 6.1.c GDPR)</li>
+        <li><strong className="text-white">Interesse legittimo:</strong> per la sicurezza del sito e analisi statistiche aggregate (Art. 6.1.f GDPR)</li>
+      </ul>
+    </section>
+
+    <section>
+      <h3 className="text-lg font-display font-bold text-white mb-3">5. Modalità di Trattamento</h3>
+      <p>I dati personali sono trattati con strumenti informatici e/o telematici, con logiche strettamente correlate alle finalità indicate e comunque in modo da garantire la sicurezza e la riservatezza dei dati stessi.</p>
+    </section>
+
+    <section>
+      <h3 className="text-lg font-display font-bold text-white mb-3">6. Periodo di Conservazione</h3>
+      <p>I dati personali saranno conservati per il tempo strettamente necessario a conseguire le finalità per le quali sono stati raccolti:</p>
+      <ul className="list-disc list-inside mt-2 space-y-1">
+        <li><strong className="text-white">Dati del form di contatto:</strong> 12 mesi dall&apos;ultimo contatto</li>
+        <li><strong className="text-white">Dati degli utenti registrati:</strong> per tutta la durata del rapporto contrattuale e per i 10 anni successivi (obblighi fiscali)</li>
+        <li><strong className="text-white">Dati di navigazione:</strong> 26 mesi</li>
+      </ul>
+    </section>
+
+    <section>
+      <h3 className="text-lg font-display font-bold text-white mb-3">7. Comunicazione e Diffusione dei Dati</h3>
+      <p>I dati personali potranno essere comunicati a:</p>
+      <ul className="list-disc list-inside mt-2 space-y-1">
+        <li>Fornitori di servizi tecnici (hosting, email) che agiscono come Responsabili del trattamento</li>
+        <li>Autorità competenti, quando richiesto dalla legge</li>
+      </ul>
+      <p className="mt-2">I dati non saranno in alcun modo diffusi o ceduti a terzi per finalità di marketing senza il tuo esplicito consenso.</p>
+    </section>
+
+    <section>
+      <h3 className="text-lg font-display font-bold text-white mb-3">8. Trasferimento dei Dati</h3>
+      <p>Alcuni dei servizi terzi utilizzati potrebbero comportare il trasferimento di dati verso paesi extra-UE (es. USA). In tal caso, il trasferimento avviene nel rispetto delle garanzie previste dal GDPR, come le Clausole Contrattuali Standard approvate dalla Commissione Europea.</p>
+    </section>
+
+    <section>
+      <h3 className="text-lg font-display font-bold text-white mb-3">9. Diritti dell&apos;Interessato</h3>
+      <p>Ai sensi degli articoli 15-22 del GDPR, hai diritto di:</p>
+      <ul className="list-disc list-inside mt-2 space-y-1">
+        <li><strong className="text-white">Accesso:</strong> ottenere conferma dell&apos;esistenza di un trattamento e accedere ai tuoi dati</li>
+        <li><strong className="text-white">Rettifica:</strong> ottenere la correzione di dati inesatti</li>
+        <li><strong className="text-white">Cancellazione:</strong> ottenere la cancellazione dei tuoi dati (&quot;diritto all&apos;oblio&quot;)</li>
+        <li><strong className="text-white">Limitazione:</strong> ottenere la limitazione del trattamento</li>
+        <li><strong className="text-white">Portabilità:</strong> ricevere i tuoi dati in formato strutturato</li>
+        <li><strong className="text-white">Opposizione:</strong> opporti al trattamento per motivi legittimi</li>
+        <li><strong className="text-white">Revoca del consenso:</strong> revocare in qualsiasi momento il consenso prestato</li>
+      </ul>
+      <p className="mt-3">Per esercitare i tuoi diritti, puoi contattarci all&apos;indirizzo: <strong className="text-accent-lime">coachinghubinfo@gmail.com</strong></p>
+    </section>
+
+    <section>
+      <h3 className="text-lg font-display font-bold text-white mb-3">10. Reclamo all&apos;Autorità di Controllo</h3>
+      <p>Hai il diritto di proporre reclamo al Garante per la Protezione dei Dati Personali se ritieni che il trattamento dei tuoi dati sia contrario alla normativa vigente.</p>
+      <p className="mt-2">Sito web: <a href="https://www.garanteprivacy.it" target="_blank" rel="noopener noreferrer" className="text-accent-lime hover:underline">www.garanteprivacy.it</a></p>
+    </section>
+
+    <section>
+      <h3 className="text-lg font-display font-bold text-white mb-3">11. Modifiche alla Privacy Policy</h3>
+      <p>Il Titolare si riserva il diritto di apportare modifiche alla presente Privacy Policy in qualsiasi momento, dandone comunicazione agli utenti su questa pagina. Ti invitiamo a consultare regolarmente questa pagina.</p>
+    </section>
+  </div>
+)
+
+// Contenuto Cookie Policy
+const CookiePolicyContent = () => (
+  <div className="space-y-6 text-white/80">
+    <p className="text-white/60 text-sm">Ultimo aggiornamento: Gennaio 2026</p>
+    
+    <section>
+      <h3 className="text-lg font-display font-bold text-white mb-3">1. Cosa sono i Cookie</h3>
+      <p>I cookie sono piccoli file di testo che i siti web visitati inviano al browser dell&apos;utente, dove vengono memorizzati, per poi essere ritrasmessi agli stessi siti alla visita successiva. I cookie permettono di migliorare la navigazione, ricordare le preferenze e personalizzare l&apos;esperienza dell&apos;utente.</p>
+    </section>
+
+    <section>
+      <h3 className="text-lg font-display font-bold text-white mb-3">2. Titolare del Trattamento</h3>
+      <ul className="list-none space-y-1">
+        <li><strong className="text-white">Nome:</strong> Mauro Vallotti</li>
+        <li><strong className="text-white">Indirizzo:</strong> Via Roma 2, 10040 Rivalta di Torino (TO), Italia</li>
+        <li><strong className="text-white">Email:</strong> coachinghubinfo@gmail.com</li>
+      </ul>
+    </section>
+
+    <section>
+      <h3 className="text-lg font-display font-bold text-white mb-3">3. Tipologie di Cookie Utilizzati</h3>
+      
+      <div className="mt-4 space-y-4">
+        <div className="p-4 bg-white/5 rounded-xl">
+          <h4 className="font-bold text-white mb-2">3.1 Cookie Tecnici (Necessari)</h4>
+          <p className="text-sm">Questi cookie sono essenziali per il corretto funzionamento del sito e non richiedono il consenso dell&apos;utente.</p>
+          <ul className="list-disc list-inside mt-2 text-sm space-y-1">
+            <li>Cookie di sessione per la navigazione</li>
+            <li>Cookie per la sicurezza</li>
+            <li>Cookie per ricordare le preferenze sui cookie</li>
+          </ul>
+          <p className="text-xs text-white/50 mt-2">Base giuridica: Interesse legittimo (Art. 6.1.f GDPR)</p>
+        </div>
+
+        <div className="p-4 bg-white/5 rounded-xl">
+          <h4 className="font-bold text-white mb-2">3.2 Cookie Analitici</h4>
+          <p className="text-sm">Questi cookie ci permettono di capire come i visitatori interagiscono con il sito, raccogliendo informazioni in forma aggregata e anonima.</p>
+          <ul className="list-disc list-inside mt-2 text-sm space-y-1">
+            <li>Vercel Analytics (se attivato): analisi delle performance</li>
+          </ul>
+          <p className="text-xs text-white/50 mt-2">Base giuridica: Consenso (Art. 6.1.a GDPR)</p>
+        </div>
+
+        <div className="p-4 bg-white/5 rounded-xl">
+          <h4 className="font-bold text-white mb-2">3.3 Cookie di Terze Parti</h4>
+          <p className="text-sm">Il sito potrebbe contenere collegamenti a servizi di terze parti che installano propri cookie:</p>
+          <ul className="list-disc list-inside mt-2 text-sm space-y-1">
+            <li><strong className="text-white">Formspree:</strong> per la gestione del form di contatto</li>
+          </ul>
+          <p className="text-xs text-white/50 mt-2">Per questi cookie, consulta le rispettive informative privacy.</p>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <h3 className="text-lg font-display font-bold text-white mb-3">4. Durata dei Cookie</h3>
+      <ul className="list-disc list-inside space-y-1">
+        <li><strong className="text-white">Cookie di sessione:</strong> cancellati automaticamente alla chiusura del browser</li>
+        <li><strong className="text-white">Cookie persistenti:</strong> conservati per un periodo massimo di 12 mesi</li>
+      </ul>
+    </section>
+
+    <section>
+      <h3 className="text-lg font-display font-bold text-white mb-3">5. Come Gestire i Cookie</h3>
+      <p>Puoi gestire le tue preferenze sui cookie in diversi modi:</p>
+      
+      <div className="mt-4 space-y-3">
+        <div>
+          <h4 className="font-bold text-white mb-1">Tramite il Browser</h4>
+          <p className="text-sm">Puoi configurare il tuo browser per accettare, rifiutare o eliminare i cookie. Ecco i link alle guide dei principali browser:</p>
+          <ul className="list-disc list-inside mt-2 text-sm space-y-1">
+            <li><a href="https://support.google.com/chrome/answer/95647" target="_blank" rel="noopener noreferrer" className="text-accent-lime hover:underline">Google Chrome</a></li>
+            <li><a href="https://support.mozilla.org/it/kb/protezione-antitracciamento-avanzata-firefox-desktop" target="_blank" rel="noopener noreferrer" className="text-accent-lime hover:underline">Mozilla Firefox</a></li>
+            <li><a href="https://support.apple.com/it-it/guide/safari/sfri11471/mac" target="_blank" rel="noopener noreferrer" className="text-accent-lime hover:underline">Apple Safari</a></li>
+            <li><a href="https://support.microsoft.com/it-it/microsoft-edge/eliminare-i-cookie-in-microsoft-edge-63947406-40ac-c3b8-57b9-2a946a29ae09" target="_blank" rel="noopener noreferrer" className="text-accent-lime hover:underline">Microsoft Edge</a></li>
+          </ul>
+        </div>
+      </div>
+      
+      <p className="mt-4 text-sm"><strong className="text-white">Nota:</strong> Disabilitare i cookie tecnici potrebbe compromettere il corretto funzionamento del sito.</p>
+    </section>
+
+    <section>
+      <h3 className="text-lg font-display font-bold text-white mb-3">6. Aggiornamenti</h3>
+      <p>La presente Cookie Policy può essere soggetta a modifiche. Ti invitiamo a consultare periodicamente questa pagina per essere sempre informato su come trattiamo i cookie.</p>
+    </section>
+
+    <section>
+      <h3 className="text-lg font-display font-bold text-white mb-3">7. Contatti</h3>
+      <p>Per qualsiasi domanda relativa a questa Cookie Policy, puoi contattarci all&apos;indirizzo: <strong className="text-accent-lime">coachinghubinfo@gmail.com</strong></p>
+    </section>
+  </div>
+)
+
+// Contenuto Termini di Servizio
+const TerminiServizioContent = () => (
+  <div className="space-y-6 text-white/80">
+    <p className="text-white/60 text-sm">Ultimo aggiornamento: Gennaio 2026</p>
+    
+    <section>
+      <h3 className="text-lg font-display font-bold text-white mb-3">1. Definizioni</h3>
+      <ul className="list-disc list-inside space-y-1">
+        <li><strong className="text-white">&quot;Coaching Hub&quot;</strong> o <strong className="text-white">&quot;Piattaforma&quot;</strong>: il software gestionale per personal trainer e coach distribuito tramite questo sito</li>
+        <li><strong className="text-white">&quot;Titolare&quot;</strong> o <strong className="text-white">&quot;Fornitore&quot;</strong>: Mauro Vallotti, con sede in Via Roma 2, 10040 Rivalta di Torino (TO)</li>
+        <li><strong className="text-white">&quot;Utente&quot;</strong> o <strong className="text-white">&quot;Cliente&quot;</strong>: la persona fisica o giuridica che acquista una licenza di Coaching Hub</li>
+        <li><strong className="text-white">&quot;Servizio&quot;</strong>: l&apos;insieme delle funzionalità offerte dalla Piattaforma secondo il piano sottoscritto</li>
+      </ul>
+    </section>
+
+    <section>
+      <h3 className="text-lg font-display font-bold text-white mb-3">2. Oggetto del Contratto</h3>
+      <p>I presenti Termini di Servizio regolano l&apos;utilizzo della piattaforma Coaching Hub. Con l&apos;acquisto di una licenza, l&apos;Utente accetta integralmente i presenti termini.</p>
+      <p className="mt-2">Coaching Hub è un software gestionale che permette a personal trainer, nutrizionisti e coach di gestire i propri clienti attraverso funzionalità quali: schede allenamento, piani alimentari, messaggistica, tracciamento progressi e calendario appuntamenti.</p>
+    </section>
+
+    <section>
+      <h3 className="text-lg font-display font-bold text-white mb-3">3. Requisiti Tecnici</h3>
+      <p>Per utilizzare Coaching Hub è necessario:</p>
+      <ul className="list-disc list-inside mt-2 space-y-1">
+        <li>Disporre di un sito WordPress con hosting compatibile (PHP 7.4+, MySQL 5.7+)</li>
+        <li>Connessione internet attiva</li>
+        <li>Browser web aggiornato</li>
+      </ul>
+      <p className="mt-2">Il Titolare fornisce supporto per l&apos;installazione iniziale ma non è responsabile per problemi derivanti da hosting inadeguati o configurazioni errate del server.</p>
+    </section>
+
+    <section>
+      <h3 className="text-lg font-display font-bold text-white mb-3">4. Piani e Prezzi</h3>
+      <p>Coaching Hub è disponibile in diversi piani di abbonamento:</p>
+      <ul className="list-disc list-inside mt-2 space-y-1">
+        <li><strong className="text-white">Starter:</strong> fino a 10 clienti</li>
+        <li><strong className="text-white">Professional:</strong> fino a 50 clienti</li>
+        <li><strong className="text-white">Business:</strong> fino a 200 clienti</li>
+        <li><strong className="text-white">Enterprise:</strong> clienti illimitati</li>
+      </ul>
+      <p className="mt-2">I prezzi sono quelli indicati nella pagina Prezzi al momento dell&apos;acquisto e possono essere soggetti a modifiche per i rinnovi successivi, con preavviso di almeno 30 giorni.</p>
+    </section>
+
+    <section>
+      <h3 className="text-lg font-display font-bold text-white mb-3">5. Pagamento e Fatturazione</h3>
+      <ul className="list-disc list-inside space-y-1">
+        <li>Il pagamento avviene tramite PayPal o carta di credito</li>
+        <li>L&apos;abbonamento si rinnova automaticamente alla scadenza, salvo disdetta</li>
+        <li>La fattura viene emessa e inviata via email dopo ogni pagamento</li>
+        <li>In caso di mancato pagamento, il servizio verrà sospeso dopo 7 giorni di ritardo</li>
+      </ul>
+    </section>
+
+    <section>
+      <h3 className="text-lg font-display font-bold text-white mb-3">6. Diritto di Recesso e Rimborsi</h3>
+      <p>Ai sensi del Codice del Consumo (D.Lgs. 206/2005), l&apos;Utente consumatore ha diritto di recedere dal contratto entro 14 giorni dall&apos;acquisto, senza dover fornire alcuna motivazione.</p>
+      <p className="mt-2">Per esercitare il diritto di recesso, è sufficiente inviare una comunicazione a <strong className="text-accent-lime">coachinghubinfo@gmail.com</strong> entro il termine previsto.</p>
+      <p className="mt-2"><strong className="text-white">Garanzia soddisfatto o rimborsato:</strong> Oltre al diritto di recesso legale, offriamo una garanzia di 14 giorni. Se non sei soddisfatto, ti rimborsiamo l&apos;intero importo.</p>
+    </section>
+
+    <section>
+      <h3 className="text-lg font-display font-bold text-white mb-3">7. Upgrade e Downgrade</h3>
+      <ul className="list-disc list-inside space-y-1">
+        <li><strong className="text-white">Upgrade:</strong> puoi passare a un piano superiore in qualsiasi momento. Pagherai solo la differenza proporzionale al periodo rimanente</li>
+        <li><strong className="text-white">Downgrade:</strong> il passaggio a un piano inferiore sarà effettivo dal prossimo rinnovo. Non sono previsti rimborsi per il periodo corrente</li>
+      </ul>
+    </section>
+
+    <section>
+      <h3 className="text-lg font-display font-bold text-white mb-3">8. Obblighi dell&apos;Utente</h3>
+      <p>L&apos;Utente si impegna a:</p>
+      <ul className="list-disc list-inside mt-2 space-y-1">
+        <li>Utilizzare la Piattaforma in conformità alle leggi vigenti</li>
+        <li>Non condividere le proprie credenziali di accesso con terzi</li>
+        <li>Non tentare di aggirare le limitazioni del piano acquistato</li>
+        <li>Non utilizzare la Piattaforma per scopi illeciti o fraudolenti</li>
+        <li>Mantenere aggiornati i propri dati di contatto e fatturazione</li>
+        <li>Rispettare la privacy dei propri clienti e trattare i loro dati in conformità al GDPR</li>
+      </ul>
+    </section>
+
+    <section>
+      <h3 className="text-lg font-display font-bold text-white mb-3">9. Responsabilità dell&apos;Utente sui Dati</h3>
+      <p>L&apos;Utente è l&apos;unico Titolare del trattamento dei dati dei propri clienti inseriti nella Piattaforma. Il Fornitore agisce come Responsabile del trattamento ai sensi dell&apos;Art. 28 del GDPR.</p>
+      <p className="mt-2">L&apos;Utente si impegna a:</p>
+      <ul className="list-disc list-inside mt-2 space-y-1">
+        <li>Informare adeguatamente i propri clienti sul trattamento dei loro dati</li>
+        <li>Ottenere i consensi necessari dove richiesto</li>
+        <li>Non inserire dati sensibili non necessari all&apos;erogazione del servizio</li>
+      </ul>
+    </section>
+
+    <section>
+      <h3 className="text-lg font-display font-bold text-white mb-3">10. Limitazione di Responsabilità</h3>
+      <p>Il Fornitore non è responsabile per:</p>
+      <ul className="list-disc list-inside mt-2 space-y-1">
+        <li>Interruzioni del servizio dovute a cause di forza maggiore o a manutenzione programmata</li>
+        <li>Perdita di dati causata da negligenza dell&apos;Utente o del suo provider di hosting</li>
+        <li>Danni indiretti, incidentali o consequenziali derivanti dall&apos;uso della Piattaforma</li>
+        <li>Malfunzionamenti derivanti da incompatibilità con plugin o temi WordPress di terze parti</li>
+      </ul>
+      <p className="mt-2">La responsabilità massima del Fornitore è in ogni caso limitata all&apos;importo pagato dall&apos;Utente negli ultimi 12 mesi.</p>
+    </section>
+
+    <section>
+      <h3 className="text-lg font-display font-bold text-white mb-3">11. Proprietà Intellettuale</h3>
+      <p>Coaching Hub, inclusi codice sorgente, grafica, documentazione e marchi, sono di proprietà esclusiva del Fornitore. L&apos;acquisto di una licenza non trasferisce alcun diritto di proprietà intellettuale.</p>
+      <p className="mt-2">È vietato:</p>
+      <ul className="list-disc list-inside mt-2 space-y-1">
+        <li>Copiare, modificare o distribuire il software</li>
+        <li>Effettuare reverse engineering</li>
+        <li>Rimuovere o alterare avvisi di copyright</li>
+        <li>Sublicenziare o rivendere l&apos;accesso alla Piattaforma</li>
+      </ul>
+    </section>
+
+    <section>
+      <h3 className="text-lg font-display font-bold text-white mb-3">12. Supporto Tecnico</h3>
+      <ul className="list-disc list-inside space-y-1">
+        <li>Il supporto è fornito via email all&apos;indirizzo <strong className="text-accent-lime">coachinghubinfo@gmail.com</strong></li>
+        <li>Tempo di risposta: entro 24 ore lavorative (48 ore per piani Starter)</li>
+        <li>I piani Business ed Enterprise includono supporto prioritario</li>
+        <li>Il supporto copre problemi relativi al funzionamento della Piattaforma, non alla configurazione dell&apos;hosting o di WordPress</li>
+      </ul>
+    </section>
+
+    <section>
+      <h3 className="text-lg font-display font-bold text-white mb-3">13. Sospensione e Risoluzione</h3>
+      <p>Il Fornitore si riserva il diritto di sospendere o risolvere il contratto in caso di:</p>
+      <ul className="list-disc list-inside mt-2 space-y-1">
+        <li>Mancato pagamento delle quote di abbonamento</li>
+        <li>Violazione dei presenti Termini di Servizio</li>
+        <li>Utilizzo fraudolento o illecito della Piattaforma</li>
+        <li>Comportamenti che danneggino l&apos;immagine del Fornitore</li>
+      </ul>
+      <p className="mt-2">In caso di risoluzione per causa imputabile all&apos;Utente, non è previsto alcun rimborso.</p>
+    </section>
+
+    <section>
+      <h3 className="text-lg font-display font-bold text-white mb-3">14. Modifiche ai Termini</h3>
+      <p>Il Fornitore si riserva il diritto di modificare i presenti Termini di Servizio. Le modifiche saranno comunicate via email con almeno 30 giorni di preavviso. L&apos;uso continuato della Piattaforma dopo tale periodo costituisce accettazione delle modifiche.</p>
+    </section>
+
+    <section>
+      <h3 className="text-lg font-display font-bold text-white mb-3">15. Legge Applicabile e Foro Competente</h3>
+      <p>Il presente contratto è regolato dalla legge italiana. Per qualsiasi controversia relativa all&apos;interpretazione, esecuzione o risoluzione del presente contratto, sarà competente in via esclusiva il Foro di Torino, salvo il caso in cui l&apos;Utente sia qualificabile come consumatore ai sensi del Codice del Consumo, nel qual caso sarà competente il foro del luogo di residenza o domicilio del consumatore.</p>
+    </section>
+
+    <section>
+      <h3 className="text-lg font-display font-bold text-white mb-3">16. Contatti</h3>
+      <p>Per qualsiasi domanda relativa ai presenti Termini di Servizio:</p>
+      <ul className="list-none mt-2 space-y-1">
+        <li><strong className="text-white">Email:</strong> <span className="text-accent-lime">coachinghubinfo@gmail.com</span></li>
+        <li><strong className="text-white">Indirizzo:</strong> Via Roma 2, 10040 Rivalta di Torino (TO), Italia</li>
+      </ul>
+    </section>
+  </div>
+)
+
+// ============================================
+// COMPONENTE PRINCIPALE
+// ============================================
+
 export default function LandingPage() {
   const [billingAnnual, setBillingAnnual] = useState(true)
   const [openFaq, setOpenFaq] = useState<number | null>(null)
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
   const [formStatus, setFormStatus] = useState<'idle' | 'sending' | 'sent' | 'error'>('idle')
+  const [activeModal, setActiveModal] = useState<ModalType>(null)
 
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault()
@@ -68,7 +505,7 @@ export default function LandingPage() {
     const formData = new FormData(form)
     
     try {
-      const res = await fetch('https://formspree.io/f/mpqqjkrn', {
+      const res = await fetch('https://formspree.io/f/YOUR_FORM_ID', {
         method: 'POST',
         body: formData,
         headers: { 'Accept': 'application/json' }
@@ -88,6 +525,31 @@ export default function LandingPage() {
     <div className="relative overflow-hidden">
       <div className="fixed inset-0 mesh-gradient pointer-events-none" />
       <div className="fixed inset-0 noise-overlay pointer-events-none" />
+
+      {/* Modal Legali */}
+      <LegalModal
+        isOpen={activeModal === 'privacy'}
+        onClose={() => setActiveModal(null)}
+        title="Privacy Policy"
+      >
+        <PrivacyPolicyContent />
+      </LegalModal>
+
+      <LegalModal
+        isOpen={activeModal === 'cookie'}
+        onClose={() => setActiveModal(null)}
+        title="Cookie Policy"
+      >
+        <CookiePolicyContent />
+      </LegalModal>
+
+      <LegalModal
+        isOpen={activeModal === 'termini'}
+        onClose={() => setActiveModal(null)}
+        title="Termini di Servizio"
+      >
+        <TerminiServizioContent />
+      </LegalModal>
       
       {/* Navigation */}
       <nav className="fixed top-0 left-0 right-0 z-50 bg-slate-950/80 backdrop-blur-xl border-b border-white/5">
@@ -199,8 +661,8 @@ export default function LandingPage() {
             <motion.div initial="hidden" whileInView="visible" viewport={{ once: true }} variants={staggerContainer} className="card-glass p-8 rounded-3xl border-accent-lime/20">
               <div className="flex items-center gap-3 mb-6"><div className="w-12 h-12 rounded-xl bg-accent-lime/20 flex items-center justify-center"><Check className="w-6 h-6 text-accent-lime" /></div><h3 className="font-display text-xl font-bold">Con Coaching Hub</h3></div>
               <div className="space-y-4">
-                {['Tutto in un\'unica piattaforma professionale', 'I tuoi clienti hanno la loro app personale', 'Tu risparmi ore ogni settimana', 'I clienti sono più motivati e ottengono risultati', 'Il tuo lavoro viene percepito come premium', 'Automatizzi le attività ripetitive'].map((solution, i) => (
-                  <motion.div key={i} variants={fadeInUp} className="flex items-start gap-3"><Check className="w-5 h-5 text-accent-lime shrink-0 mt-0.5" /><span>{solution}</span></motion.div>
+                {['Dashboard con tutto sotto controllo', 'Schede allenamento sempre accessibili dal cliente', 'Piani alimentari interattivi e facili da seguire', 'Messaggistica integrata in un unico posto', 'Report e grafici automatici sui progressi', 'Template riutilizzabili per risparmiare ore'].map((solution, i) => (
+                  <motion.div key={i} variants={fadeInUp} className="flex items-start gap-3 text-white/70"><Check className="w-5 h-5 text-accent-lime shrink-0 mt-0.5" /><span>{solution}</span></motion.div>
                 ))}
               </div>
             </motion.div>
@@ -212,57 +674,61 @@ export default function LandingPage() {
       <section id="funzionalita" className="relative section-padding">
         <div className="container-custom">
           <motion.div initial="hidden" whileInView="visible" viewport={{ once: true }} variants={staggerContainer} className="text-center mb-16">
-            <motion.h2 variants={fadeInUp} className="font-display text-3xl md:text-4xl lg:text-5xl font-bold mb-6">Tutto quello che ti serve. <span className="text-gradient">Niente di più.</span></motion.h2>
-            <motion.p variants={fadeInUp} className="text-lg text-white/60 max-w-2xl mx-auto">Una piattaforma completa pensata per personal trainer e coach online.</motion.p>
+            <motion.h2 variants={fadeInUp} className="font-display text-3xl md:text-4xl lg:text-5xl font-bold mb-6">Tutto quello che ti serve, <span className="text-gradient">in un unico posto.</span></motion.h2>
+            <motion.p variants={fadeInUp} className="text-lg text-white/60 max-w-2xl mx-auto">Dimentica i 10 strumenti diversi. Coaching Hub integra tutto quello che serve per gestire i tuoi clienti come un vero professionista.</motion.p>
           </motion.div>
           <motion.div initial="hidden" whileInView="visible" viewport={{ once: true }} variants={staggerContainer} className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {features.map((feature, i) => {
-              const IconComponent = feature.icon
-              return (
-                <motion.div key={i} variants={fadeInUp} whileHover={{ y: -5, scale: 1.02 }} className="group card-glass p-8 rounded-3xl hover:border-white/20 transition-all duration-300">
-                  <div className={`w-14 h-14 rounded-2xl bg-gradient-to-br ${feature.color} flex items-center justify-center mb-6 group-hover:scale-110 transition-transform`}>
-                    <IconComponent className="w-7 h-7 text-white" />
-                  </div>
-                  <h3 className="font-display text-xl font-bold mb-3">{feature.title}</h3>
-                  <p className="text-white/60 leading-relaxed">{feature.description}</p>
-                </motion.div>
-              )
-            })}
-          </motion.div>
-          <motion.div initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} viewport={{ once: true }} className="mt-12 text-center">
-            <p className="text-white/40">E anche: Check-in settimanali • Report PDF • Notifiche push • Multi-coach • Contenuti educativi • White label • e molto altro...</p>
+            {features.map((feature, i) => (
+              <motion.div key={i} variants={fadeInUp} className="group card-glass p-8 rounded-3xl hover:border-white/20 transition-all duration-300">
+                <div className={`w-14 h-14 rounded-2xl bg-gradient-to-br ${feature.color} flex items-center justify-center mb-6 group-hover:scale-110 transition-transform`}>
+                  <feature.icon className="w-7 h-7 text-white" />
+                </div>
+                <h3 className="font-display text-xl font-bold mb-3">{feature.title}</h3>
+                <p className="text-white/60">{feature.description}</p>
+              </motion.div>
+            ))}
           </motion.div>
         </div>
       </section>
 
-      {/* How it Works */}
+      {/* Why Choose Us */}
       <section className="relative section-padding bg-gradient-to-b from-slate-900/50 to-transparent">
         <div className="container-custom">
-          <motion.div initial="hidden" whileInView="visible" viewport={{ once: true }} variants={staggerContainer} className="text-center mb-16">
-            <motion.h2 variants={fadeInUp} className="font-display text-3xl md:text-4xl lg:text-5xl font-bold mb-6">Pronto in <span className="text-gradient">3 semplici passi</span></motion.h2>
-          </motion.div>
-          <motion.div initial="hidden" whileInView="visible" viewport={{ once: true }} variants={staggerContainer} className="grid md:grid-cols-3 gap-8">
-            {[
-              { step: '01', icon: Zap, title: 'Installa', description: 'Ricevi il plugin, lo installi sul tuo sito WordPress e attivi la licenza. Fatto in 5 minuti.' },
-              { step: '02', icon: Palette, title: 'Configura', description: 'Personalizza colori, logo e impostazioni. Aggiungi i tuoi primi clienti con un invito via email.' },
-              { step: '03', icon: Dumbbell, title: 'Lavora', description: 'Crea schede, piani alimentari e segui i progressi. I tuoi clienti accedono dal telefono.' }
-            ].map((item, i) => {
-              const IconComponent = item.icon
-              return (
-                <motion.div key={i} variants={fadeInUp} className="relative text-center">
-                  {i < 2 && <div className="hidden md:block absolute top-16 left-[60%] w-[80%] h-px bg-gradient-to-r from-white/20 to-transparent" />}
-                  <div className="relative inline-flex items-center justify-center mb-6">
-                    <div className="absolute inset-0 bg-brand-500/20 blur-2xl rounded-full" />
-                    <div className="relative w-32 h-32 rounded-full bg-gradient-to-br from-brand-500 to-brand-700 flex items-center justify-center">
-                      <IconComponent className="w-12 h-12 text-white" />
-                    </div>
-                    <div className="absolute -top-2 -right-2 w-10 h-10 rounded-full bg-accent-lime flex items-center justify-center font-display font-bold text-slate-950">{item.step}</div>
+          <motion.div initial="hidden" whileInView="visible" viewport={{ once: true }} variants={staggerContainer} className="grid lg:grid-cols-2 gap-16 items-center">
+            <motion.div variants={fadeInUp}>
+              <h2 className="font-display text-3xl md:text-4xl lg:text-5xl font-bold mb-6">Perché scegliere <span className="text-gradient">Coaching Hub?</span></h2>
+              <div className="space-y-6 mt-8">
+                {[
+                  { icon: Zap, title: 'Semplicissimo da usare', description: 'Interfaccia intuitiva pensata per chi non è un tecnico. Se sai usare lo smartphone, sai usare Coaching Hub.' },
+                  { icon: Shield, title: 'I tuoi dati sono al sicuro', description: 'Il plugin si installa sul TUO sito WordPress. I dati dei tuoi clienti restano tuoi, sempre.' },
+                  { icon: Clock, title: 'Risparmia 10+ ore a settimana', description: 'Automatizza le attività ripetitive e dedica più tempo a quello che conta: i tuoi clienti.' },
+                  { icon: Palette, title: 'Personalizzabile', description: 'Adatta colori, logo e funzionalità al tuo brand. I piani avanzati offrono anche white label completo.' }
+                ].map((item, i) => (
+                  <div key={i} className="flex gap-4">
+                    <div className="w-12 h-12 rounded-xl bg-brand-500/20 flex items-center justify-center shrink-0"><item.icon className="w-6 h-6 text-brand-400" /></div>
+                    <div><h3 className="font-display font-bold mb-1">{item.title}</h3><p className="text-white/60 text-sm">{item.description}</p></div>
                   </div>
-                  <h3 className="font-display text-2xl font-bold mb-3">{item.title}</h3>
-                  <p className="text-white/60 max-w-xs mx-auto">{item.description}</p>
-                </motion.div>
-              )
-            })}
+                ))}
+              </div>
+            </motion.div>
+            <motion.div variants={fadeInUp} className="relative">
+              <div className="absolute -inset-4 bg-gradient-to-r from-accent-lime/10 to-brand-500/10 blur-3xl rounded-3xl" />
+              <div className="relative card-glass p-8 rounded-3xl">
+                <div className="text-center">
+                  <div className="text-6xl md:text-7xl font-display font-bold text-gradient mb-4">10+</div>
+                  <p className="text-xl text-white/80 mb-2">ore risparmiate a settimana</p>
+                  <p className="text-white/60">in media dai nostri utenti</p>
+                </div>
+                <div className="grid grid-cols-3 gap-4 mt-8">
+                  {[{ value: '500+', label: 'Coach attivi' }, { value: '15k+', label: 'Clienti gestiti' }, { value: '99%', label: 'Soddisfazione' }].map((stat, i) => (
+                    <div key={i} className="text-center p-4 bg-white/5 rounded-xl">
+                      <div className="text-xl font-display font-bold text-accent-lime">{stat.value}</div>
+                      <div className="text-xs text-white/60">{stat.label}</div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </motion.div>
           </motion.div>
         </div>
       </section>
@@ -271,95 +737,43 @@ export default function LandingPage() {
       <section id="prezzi" className="relative section-padding">
         <div className="container-custom">
           <motion.div initial="hidden" whileInView="visible" viewport={{ once: true }} variants={staggerContainer} className="text-center mb-12">
-            <motion.h2 variants={fadeInUp} className="font-display text-3xl md:text-4xl lg:text-5xl font-bold mb-6">Scegli il piano <span className="text-gradient">giusto per te</span></motion.h2>
-            <motion.p variants={fadeInUp} className="text-lg text-white/60 max-w-2xl mx-auto mb-8">Tutti i piani includono: installazione guidata, supporto email, aggiornamenti gratuiti e una landing page professionale.</motion.p>
-            <motion.div variants={fadeInUp} className="inline-flex items-center gap-4 p-2 rounded-full bg-white/5 border border-white/10">
-              <button onClick={() => setBillingAnnual(true)} className={`px-6 py-3 rounded-full font-semibold transition-all ${billingAnnual ? 'bg-accent-lime text-slate-950' : 'text-white/60 hover:text-white'}`}>Annuale<span className="ml-2 text-xs px-2 py-1 rounded-full bg-slate-950/30">-20%</span></button>
-              <button onClick={() => setBillingAnnual(false)} className={`px-6 py-3 rounded-full font-semibold transition-all ${!billingAnnual ? 'bg-accent-lime text-slate-950' : 'text-white/60 hover:text-white'}`}>Mensile</button>
+            <motion.h2 variants={fadeInUp} className="font-display text-3xl md:text-4xl lg:text-5xl font-bold mb-6">Scegli il piano <span className="text-gradient">perfetto per te</span></motion.h2>
+            <motion.div variants={fadeInUp} className="flex items-center justify-center gap-4 mt-8">
+              <span className={`text-sm ${!billingAnnual ? 'text-white' : 'text-white/50'}`}>Mensile</span>
+              <button onClick={() => setBillingAnnual(!billingAnnual)} className="relative w-16 h-8 rounded-full bg-white/10 p-1 transition-colors">
+                <div className={`absolute top-1 w-6 h-6 rounded-full bg-accent-lime transition-transform ${billingAnnual ? 'translate-x-8' : 'translate-x-0'}`} />
+              </button>
+              <span className={`text-sm ${billingAnnual ? 'text-white' : 'text-white/50'}`}>Annuale</span>
+              <span className="ml-2 text-xs bg-accent-lime/20 text-accent-lime px-3 py-1 rounded-full">Risparmia 2 mesi</span>
             </motion.div>
           </motion.div>
           <motion.div initial="hidden" whileInView="visible" viewport={{ once: true }} variants={staggerContainer} className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
             {plans.map((plan, i) => (
-              <motion.div key={i} variants={fadeInUp} className={`relative card-glass p-8 rounded-3xl flex flex-col ${plan.popular ? 'border-accent-lime/50 ring-2 ring-accent-lime/20' : ''}`}>
-                {plan.popular && <div className="absolute -top-4 left-1/2 -translate-x-1/2 px-4 py-1 bg-accent-lime text-slate-950 text-sm font-bold rounded-full">Più Popolare</div>}
-                <div className="text-center mb-6"><h3 className="font-display text-2xl font-bold mb-2">{plan.name}</h3><p className="text-white/60 text-sm">{plan.description}</p></div>
-                <div className="text-center mb-6">
-                  <div className="flex items-baseline justify-center gap-1"><span className="text-4xl font-display font-bold">€{billingAnnual ? plan.priceAnnual : plan.priceMonthly.toFixed(2).replace('.', ',')}</span><span className="text-white/60">/{billingAnnual ? 'anno' : 'mese'}</span></div>
-                  {!billingAnnual && <p className="text-xs text-white/40 mt-2">*Impegno minimo 12 mesi</p>}
+              <motion.div key={i} variants={fadeInUp} className={`relative card-glass p-6 rounded-3xl ${plan.popular ? 'border-accent-lime/50 scale-105' : ''}`}>
+                {plan.popular && <div className="absolute -top-3 left-1/2 -translate-x-1/2 bg-accent-lime text-slate-950 text-xs font-bold px-4 py-1 rounded-full">Più Popolare</div>}
+                <h3 className="font-display text-xl font-bold mb-1">{plan.name}</h3>
+                <p className="text-white/60 text-sm mb-4">{plan.description}</p>
+                <div className="mb-6">
+                  <span className="text-4xl font-display font-bold">€{billingAnnual ? plan.priceAnnual : plan.priceMonthly.toFixed(2)}</span>
+                  <span className="text-white/60">/{billingAnnual ? 'anno' : 'mese'}</span>
                 </div>
-                <div className="space-y-3 mb-8 flex-grow">{plan.features.map((feature, j) => <div key={j} className="flex items-start gap-3 text-sm"><Check className="w-5 h-5 text-accent-lime shrink-0" /><span className="text-white/80">{feature}</span></div>)}</div>
-                <a href={plan.name === 'Enterprise' ? '#contatti' : `https://maurovallotti.it/acquista/?plan=${plan.name.toLowerCase()}&billing=${billingAnnual ? 'annual' : 'monthly'}`} className={`block w-full text-center py-4 rounded-full font-bold transition-all mt-auto ${plan.popular ? 'bg-accent-lime text-slate-950 hover:shadow-[0_0_30px_rgba(200,255,0,0.3)]' : 'bg-white/10 hover:bg-white/20'}`}>{plan.name === 'Enterprise' ? 'Contattaci' : 'Inizia Ora'}</a>
+                <ul className="space-y-3 mb-6">
+                  {plan.features.map((feature, j) => (
+                    <li key={j} className="flex items-start gap-2 text-sm text-white/70">
+                      <Check className="w-4 h-4 text-accent-lime shrink-0 mt-0.5" />
+                      <span>{feature}</span>
+                    </li>
+                  ))}
+                </ul>
+                <a href={`/acquista/?plan=${plan.name.toLowerCase()}&billing=${billingAnnual ? 'annual' : 'monthly'}`} className={`w-full text-center ${plan.popular ? 'btn-primary' : 'btn-secondary'}`}>
+                  Scegli {plan.name}
+                </a>
               </motion.div>
             ))}
           </motion.div>
-          <motion.div initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} viewport={{ once: true }} className="mt-12 text-center">
-            <div className="flex flex-wrap items-center justify-center gap-8 text-sm text-white/60">
-              <div className="flex items-center gap-2"><Shield className="w-5 h-5 text-accent-lime" /><span>Pagamento sicuro con PayPal</span></div>
-              <div className="flex items-center gap-2"><Clock className="w-5 h-5 text-accent-lime" /><span>Soddisfatto o rimborsato 14 giorni</span></div>
-            </div>
-          </motion.div>
-        </div>
-      </section>
-
-      {/* Landing Page Bonus */}
-      <section className="relative section-padding bg-gradient-to-b from-transparent via-brand-950/30 to-transparent">
-        <div className="container-custom">
-          <div className="grid lg:grid-cols-2 gap-12 items-center">
-            <motion.div initial="hidden" whileInView="visible" viewport={{ once: true }} variants={staggerContainer}>
-              <motion.div variants={fadeInUp} className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-accent-lime/10 border border-accent-lime/20 mb-6"><span className="text-2xl">🎁</span><span className="text-sm font-semibold text-accent-lime">Bonus Incluso</span></motion.div>
-              <motion.h2 variants={fadeInUp} className="font-display text-3xl md:text-4xl font-bold mb-6">La tua landing page professionale <span className="text-accent-lime">è inclusa</span></motion.h2>
-              <motion.p variants={fadeInUp} className="text-lg text-white/60 mb-6">Non hai ancora un sito web? Nessun problema.</motion.p>
-              <motion.p variants={fadeInUp} className="text-white/80 mb-8">Con ogni piano ricevi <strong>GRATIS</strong> una landing page professionale per presentare i tuoi servizi ai potenziali clienti.</motion.p>
-              <motion.div variants={fadeInUp} className="grid sm:grid-cols-2 gap-4 mb-8">
-                {['Presentazione servizi', 'Chi sei e la tua storia', 'Recensioni clienti', 'Form di contatto', 'Collegamento ai social', 'Ottimizzata per mobile'].map((item, i) => (
-                  <div key={i} className="flex items-center gap-3"><Check className="w-5 h-5 text-accent-lime" /><span className="text-white/80">{item}</span></div>
-                ))}
-              </motion.div>
-              <motion.div variants={fadeInUp} className="p-6 rounded-2xl bg-white/5 border border-white/10">
-                <p className="text-white/80 mb-4"><strong>Vuoi qualcosa di più completo?</strong><br />Possiamo creare un sito multi-pagina su misura per te.</p>
-                <a href="#contatti" className="inline-flex items-center gap-2 text-accent-lime font-semibold hover:underline">Richiedi un preventivo <ArrowRight className="w-4 h-4" /></a>
-              </motion.div>
-            </motion.div>
-            <motion.div initial={{ opacity: 0, x: 50 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} className="relative">
-              <div className="relative">
-                <div className="absolute -inset-4 bg-gradient-to-r from-accent-lime/10 to-brand-500/10 blur-3xl rounded-3xl" />
-                <div className="relative card-glass p-3 rounded-3xl">
-                  <div className="bg-white rounded-2xl overflow-hidden">
-                    <div className="bg-gradient-to-br from-slate-900 to-slate-800 p-8 text-white">
-                      <div className="flex items-center gap-3 mb-8"><div className="w-10 h-10 rounded-full bg-white/20" /><div className="h-4 w-32 bg-white/20 rounded" /></div>
-                      <div className="h-8 w-3/4 bg-white/30 rounded mb-4" /><div className="h-4 w-full bg-white/10 rounded mb-2" /><div className="h-4 w-2/3 bg-white/10 rounded mb-6" /><div className="h-12 w-40 bg-accent-lime rounded-full" />
-                    </div>
-                    <div className="p-8 space-y-6">
-                      <div className="grid grid-cols-3 gap-4">{[1,2,3].map((i) => <div key={i} className="h-24 bg-slate-100 rounded-xl" />)}</div>
-                      <div className="space-y-3"><div className="h-4 w-1/3 bg-slate-200 rounded" /><div className="h-3 w-full bg-slate-100 rounded" /><div className="h-3 w-full bg-slate-100 rounded" /></div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </motion.div>
-          </div>
-        </div>
-      </section>
-
-      {/* Testimonials */}
-      <section className="relative section-padding">
-        <div className="container-custom">
-          <motion.div initial="hidden" whileInView="visible" viewport={{ once: true }} variants={staggerContainer} className="text-center mb-12">
-            <motion.h2 variants={fadeInUp} className="font-display text-3xl md:text-4xl lg:text-5xl font-bold mb-6">Cosa dicono i coach che <span className="text-gradient">usano Coaching Hub</span></motion.h2>
-          </motion.div>
-          <motion.div initial="hidden" whileInView="visible" viewport={{ once: true }} variants={staggerContainer} className="grid md:grid-cols-3 gap-6">
-            {[
-              { quote: "Finalmente ho smesso di perdere ore su WhatsApp. I miei clienti hanno tutto sul telefono e io ho tutto sotto controllo.", name: "Marco R.", role: "Personal Trainer, Milano" },
-              { quote: "I miei clienti sono più motivati da quando vedono i loro progressi sui grafici. E il sistema di punti funziona alla grande!", name: "Sara B.", role: "Coach Online, Roma" },
-              { quote: "Ho provato altre app ma erano troppo complicate. Questa è semplice e ha tutto quello che serve.", name: "Luca M.", role: "Preparatore Atletico, Torino" }
-            ].map((testimonial, i) => (
-              <motion.div key={i} variants={fadeInUp} className="card-glass p-8 rounded-3xl">
-                <div className="flex gap-1 mb-4">{[1,2,3,4,5].map((j) => <Star key={j} className="w-5 h-5 fill-accent-lime text-accent-lime" />)}</div>
-                <p className="text-white/80 mb-6 italic">&ldquo;{testimonial.quote}&rdquo;</p>
-                <div className="flex items-center gap-4"><div className="w-12 h-12 rounded-full bg-gradient-to-br from-brand-400 to-brand-600" /><div><div className="font-semibold">{testimonial.name}</div><div className="text-sm text-white/60">{testimonial.role}</div></div></div>
-              </motion.div>
-            ))}
-          </motion.div>
+          <motion.p initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeInUp} className="text-center text-white/50 text-sm mt-8">
+            Tutti i prezzi sono IVA esclusa. Garanzia soddisfatto o rimborsato di 14 giorni.
+          </motion.p>
         </div>
       </section>
 
@@ -411,7 +825,7 @@ export default function LandingPage() {
                   <div><label className="block text-sm font-medium mb-2">Messaggio *</label><textarea name="messaggio" required rows={5} className="w-full px-4 py-4 bg-white/5 border border-white/10 rounded-xl focus:border-accent-lime focus:outline-none resize-none" placeholder="Scrivi qui il tuo messaggio..." /></div>
                   <div className="flex items-start gap-3">
                     <input type="checkbox" id="privacy" name="privacy" required className="mt-1 w-5 h-5 rounded border-white/20 bg-white/5" />
-                    <label htmlFor="privacy" className="text-sm text-white/70">Ho letto e accetto la <a href="/privacy" className="text-accent-lime hover:underline">Privacy Policy</a> ai sensi del Regolamento UE 2016/679 (GDPR) e del D.Lgs. 196/2003. *</label>
+                    <label htmlFor="privacy" className="text-sm text-white/70">Ho letto e accetto la <button type="button" onClick={() => setActiveModal('privacy')} className="text-accent-lime hover:underline">Privacy Policy</button> ai sensi del Regolamento UE 2016/679 (GDPR) e del D.Lgs. 196/2003. *</label>
                   </div>
                   {formStatus === 'error' && <div className="p-4 bg-red-500/20 border border-red-500/30 rounded-xl text-red-400 text-sm">Si è verificato un errore. Riprova o scrivi direttamente a coachinghubinfo@gmail.com</div>}
                   <button type="submit" disabled={formStatus === 'sending'} className="w-full btn-primary justify-center disabled:opacity-50">
@@ -456,7 +870,11 @@ export default function LandingPage() {
           </div>
           <div className="mt-12 pt-8 border-t border-white/5 flex flex-col md:flex-row items-center justify-between gap-4 text-sm text-white/40">
             <p>© 2026 Coaching Hub - Mauro Vallotti. Tutti i diritti riservati.</p>
-            <div className="flex gap-6"><a href="/privacy" className="hover:text-white transition-colors">Privacy Policy</a><a href="/cookie" className="hover:text-white transition-colors">Cookie Policy</a><a href="/termini" className="hover:text-white transition-colors">Termini di Servizio</a></div>
+            <div className="flex gap-6">
+              <button onClick={() => setActiveModal('privacy')} className="hover:text-white transition-colors">Privacy Policy</button>
+              <button onClick={() => setActiveModal('cookie')} className="hover:text-white transition-colors">Cookie Policy</button>
+              <button onClick={() => setActiveModal('termini')} className="hover:text-white transition-colors">Termini di Servizio</button>
+            </div>
           </div>
         </div>
       </footer>
