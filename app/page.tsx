@@ -6,7 +6,7 @@ import {
   Apple, MessageCircle, TrendingUp, Calendar, Trophy,
   Check, X, ChevronDown, Zap, Shield, Clock,
   ArrowRight, Star, Mail, Bell, Palette, Menu, 
-  XIcon, Send, User, Phone
+  XIcon, Send, User, Phone, Dumbbell, LucideIcon
 } from 'lucide-react'
 import { motion } from 'framer-motion'
 
@@ -29,14 +29,15 @@ const plans = [
     features: ['Clienti illimitati', 'Coach illimitati', 'Tutto di Business, più:', 'White label completo', 'Accesso API', 'Supporto prioritario', 'Landing page inclusa'] }
 ]
 
-const DumbbellIcon = () => (
-  <svg className="w-7 h-7 text-white" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-    <path d="M6.5 6.5L17.5 17.5M6.5 6.5L3 3M6.5 6.5L6.5 10M6.5 6.5L10 6.5M17.5 17.5L21 21M17.5 17.5L17.5 14M17.5 17.5L14 17.5"/>
-  </svg>
-)
+interface Feature {
+  icon: LucideIcon
+  title: string
+  description: string
+  color: string
+}
 
-const features = [
-  { icon: DumbbellIcon, title: 'Schede Allenamento', description: 'Crea schede personalizzate in pochi minuti. Esercizi con video, serie, ripetizioni e note.', color: 'from-blue-500 to-cyan-400' },
+const features: Feature[] = [
+  { icon: Dumbbell, title: 'Schede Allenamento', description: 'Crea schede personalizzate in pochi minuti. Esercizi con video, serie, ripetizioni e note.', color: 'from-blue-500 to-cyan-400' },
   { icon: Apple, title: 'Piani Alimentari', description: 'Costruisci piani alimentari giorno per giorno. Database con migliaia di alimenti già pronti.', color: 'from-green-500 to-emerald-400' },
   { icon: MessageCircle, title: 'Messaggi Privati', description: 'Chatta con i tuoi clienti senza dare il numero personale. Tutto resta salvato e organizzato.', color: 'from-purple-500 to-pink-400' },
   { icon: TrendingUp, title: 'Tracciamento Progressi', description: 'Peso, misure, foto e check-in settimanali. Grafici automatici per vedere i miglioramenti.', color: 'from-orange-500 to-amber-400' },
@@ -67,7 +68,7 @@ export default function LandingPage() {
     const formData = new FormData(form)
     
     try {
-      const res = await fetch('https://formspree.io/f/mpqqjkrn', {
+      const res = await fetch('https://formspree.io/f/YOUR_FORM_ID', {
         method: 'POST',
         body: formData,
         headers: { 'Accept': 'application/json' }
@@ -215,15 +216,18 @@ export default function LandingPage() {
             <motion.p variants={fadeInUp} className="text-lg text-white/60 max-w-2xl mx-auto">Una piattaforma completa pensata per personal trainer e coach online.</motion.p>
           </motion.div>
           <motion.div initial="hidden" whileInView="visible" viewport={{ once: true }} variants={staggerContainer} className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {features.map((feature, i) => (
-              <motion.div key={i} variants={fadeInUp} whileHover={{ y: -5, scale: 1.02 }} className="group card-glass p-8 rounded-3xl hover:border-white/20 transition-all duration-300">
-                <div className={`w-14 h-14 rounded-2xl bg-gradient-to-br ${feature.color} flex items-center justify-center mb-6 group-hover:scale-110 transition-transform`}>
-                  {typeof feature.icon === 'function' ? <feature.icon /> : <feature.icon className="w-7 h-7 text-white" />}
-                </div>
-                <h3 className="font-display text-xl font-bold mb-3">{feature.title}</h3>
-                <p className="text-white/60 leading-relaxed">{feature.description}</p>
-              </motion.div>
-            ))}
+            {features.map((feature, i) => {
+              const IconComponent = feature.icon
+              return (
+                <motion.div key={i} variants={fadeInUp} whileHover={{ y: -5, scale: 1.02 }} className="group card-glass p-8 rounded-3xl hover:border-white/20 transition-all duration-300">
+                  <div className={`w-14 h-14 rounded-2xl bg-gradient-to-br ${feature.color} flex items-center justify-center mb-6 group-hover:scale-110 transition-transform`}>
+                    <IconComponent className="w-7 h-7 text-white" />
+                  </div>
+                  <h3 className="font-display text-xl font-bold mb-3">{feature.title}</h3>
+                  <p className="text-white/60 leading-relaxed">{feature.description}</p>
+                </motion.div>
+              )
+            })}
           </motion.div>
           <motion.div initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} viewport={{ once: true }} className="mt-12 text-center">
             <p className="text-white/40">E anche: Check-in settimanali • Report PDF • Notifiche push • Multi-coach • Contenuti educativi • White label • e molto altro...</p>
@@ -241,21 +245,24 @@ export default function LandingPage() {
             {[
               { step: '01', icon: Zap, title: 'Installa', description: 'Ricevi il plugin, lo installi sul tuo sito WordPress e attivi la licenza. Fatto in 5 minuti.' },
               { step: '02', icon: Palette, title: 'Configura', description: 'Personalizza colori, logo e impostazioni. Aggiungi i tuoi primi clienti con un invito via email.' },
-              { step: '03', icon: DumbbellIcon, title: 'Lavora', description: 'Crea schede, piani alimentari e segui i progressi. I tuoi clienti accedono dal telefono.' }
-            ].map((item, i) => (
-              <motion.div key={i} variants={fadeInUp} className="relative text-center">
-                {i < 2 && <div className="hidden md:block absolute top-16 left-[60%] w-[80%] h-px bg-gradient-to-r from-white/20 to-transparent" />}
-                <div className="relative inline-flex items-center justify-center mb-6">
-                  <div className="absolute inset-0 bg-brand-500/20 blur-2xl rounded-full" />
-                  <div className="relative w-32 h-32 rounded-full bg-gradient-to-br from-brand-500 to-brand-700 flex items-center justify-center">
-                    {typeof item.icon === 'function' ? <item.icon /> : <item.icon className="w-12 h-12 text-white" />}
+              { step: '03', icon: Dumbbell, title: 'Lavora', description: 'Crea schede, piani alimentari e segui i progressi. I tuoi clienti accedono dal telefono.' }
+            ].map((item, i) => {
+              const IconComponent = item.icon
+              return (
+                <motion.div key={i} variants={fadeInUp} className="relative text-center">
+                  {i < 2 && <div className="hidden md:block absolute top-16 left-[60%] w-[80%] h-px bg-gradient-to-r from-white/20 to-transparent" />}
+                  <div className="relative inline-flex items-center justify-center mb-6">
+                    <div className="absolute inset-0 bg-brand-500/20 blur-2xl rounded-full" />
+                    <div className="relative w-32 h-32 rounded-full bg-gradient-to-br from-brand-500 to-brand-700 flex items-center justify-center">
+                      <IconComponent className="w-12 h-12 text-white" />
+                    </div>
+                    <div className="absolute -top-2 -right-2 w-10 h-10 rounded-full bg-accent-lime flex items-center justify-center font-display font-bold text-slate-950">{item.step}</div>
                   </div>
-                  <div className="absolute -top-2 -right-2 w-10 h-10 rounded-full bg-accent-lime flex items-center justify-center font-display font-bold text-slate-950">{item.step}</div>
-                </div>
-                <h3 className="font-display text-2xl font-bold mb-3">{item.title}</h3>
-                <p className="text-white/60 max-w-xs mx-auto">{item.description}</p>
-              </motion.div>
-            ))}
+                  <h3 className="font-display text-2xl font-bold mb-3">{item.title}</h3>
+                  <p className="text-white/60 max-w-xs mx-auto">{item.description}</p>
+                </motion.div>
+              )
+            })}
           </motion.div>
         </div>
       </section>
