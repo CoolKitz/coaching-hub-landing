@@ -1,12 +1,13 @@
 'use client'
 
-import { useState, FormEvent } from 'react'
+import { useState, useEffect, FormEvent } from 'react'
 import Image from 'next/image'
 import { 
   Apple, MessageCircle, TrendingUp, Calendar, Trophy,
   Check, X, ChevronDown, Zap, Shield, Clock,
   ArrowRight, Star, Mail, Bell, Palette, Menu, 
-  XIcon, Send, User, Phone, Dumbbell, LucideIcon
+  XIcon, Send, User, Phone, Dumbbell, LucideIcon,
+  Cookie, Settings
 } from 'lucide-react'
 import { motion, AnimatePresence } from 'framer-motion'
 
@@ -216,7 +217,7 @@ const PrivacyPolicyContent = () => (
         <li><strong className="text-white">Opposizione:</strong> opporti al trattamento per motivi legittimi</li>
         <li><strong className="text-white">Revoca del consenso:</strong> revocare in qualsiasi momento il consenso prestato</li>
       </ul>
-      <p className="mt-3">Per esercitare i tuoi diritti, puoi contattarci all&apos;indirizzo: <strong className="text-accent-lime">coachinghubinfo@gmail.com</strong></p>
+      <p className="mt-3">Per esercitare i tuoi diritti, puoi contattarci all&apos;indirizzo: <a href="mailto:coachinghubinfo@gmail.com" className="text-accent-lime hover:underline">coachinghubinfo@gmail.com</a></p>
     </section>
 
     <section>
@@ -321,7 +322,7 @@ const CookiePolicyContent = () => (
 
     <section>
       <h3 className="text-lg font-display font-bold text-white mb-3">7. Contatti</h3>
-      <p>Per qualsiasi domanda relativa a questa Cookie Policy, puoi contattarci all&apos;indirizzo: <strong className="text-accent-lime">coachinghubinfo@gmail.com</strong></p>
+      <p>Per qualsiasi domanda relativa a questa Cookie Policy, puoi contattarci all&apos;indirizzo: <a href="mailto:coachinghubinfo@gmail.com" className="text-accent-lime hover:underline">coachinghubinfo@gmail.com</a></p>
     </section>
   </div>
 )
@@ -383,7 +384,7 @@ const TerminiServizioContent = () => (
     <section>
       <h3 className="text-lg font-display font-bold text-white mb-3">6. Diritto di Recesso e Rimborsi</h3>
       <p>Ai sensi del Codice del Consumo (D.Lgs. 206/2005), l&apos;Utente consumatore ha diritto di recedere dal contratto entro 14 giorni dall&apos;acquisto, senza dover fornire alcuna motivazione.</p>
-      <p className="mt-2">Per esercitare il diritto di recesso, è sufficiente inviare una comunicazione a <strong className="text-accent-lime">coachinghubinfo@gmail.com</strong> entro il termine previsto.</p>
+      <p className="mt-2">Per esercitare il diritto di recesso, è sufficiente inviare una comunicazione a <a href="mailto:coachinghubinfo@gmail.com" className="text-accent-lime hover:underline">coachinghubinfo@gmail.com</a> entro il termine previsto.</p>
       <p className="mt-2"><strong className="text-white">Garanzia soddisfatto o rimborsato:</strong> Oltre al diritto di recesso legale, offriamo una garanzia di 14 giorni. Se non sei soddisfatto, ti rimborsiamo l&apos;intero importo.</p>
     </section>
 
@@ -446,7 +447,7 @@ const TerminiServizioContent = () => (
     <section>
       <h3 className="text-lg font-display font-bold text-white mb-3">12. Supporto Tecnico</h3>
       <ul className="list-disc list-inside space-y-1">
-        <li>Il supporto è fornito via email all&apos;indirizzo <strong className="text-accent-lime">coachinghubinfo@gmail.com</strong></li>
+        <li>Il supporto è fornito via email all&apos;indirizzo <a href="mailto:coachinghubinfo@gmail.com" className="text-accent-lime hover:underline">coachinghubinfo@gmail.com</a></li>
         <li>Tempo di risposta: entro 24 ore lavorative (48 ore per piani Starter)</li>
         <li>I piani Business ed Enterprise includono supporto prioritario</li>
         <li>Il supporto copre problemi relativi al funzionamento della Piattaforma, non alla configurazione dell&apos;hosting o di WordPress</li>
@@ -479,12 +480,180 @@ const TerminiServizioContent = () => (
       <h3 className="text-lg font-display font-bold text-white mb-3">16. Contatti</h3>
       <p>Per qualsiasi domanda relativa ai presenti Termini di Servizio:</p>
       <ul className="list-none mt-2 space-y-1">
-        <li><strong className="text-white">Email:</strong> <span className="text-accent-lime">coachinghubinfo@gmail.com</span></li>
+        <li><strong className="text-white">Email:</strong> <a href="mailto:coachinghubinfo@gmail.com" className="text-accent-lime hover:underline">coachinghubinfo@gmail.com</a></li>
         <li><strong className="text-white">Indirizzo:</strong> Via Roma 2, 10040 Rivalta di Torino (TO), Italia</li>
       </ul>
     </section>
   </div>
 )
+
+// ============================================
+// COOKIE BANNER
+// ============================================
+
+interface CookiePreferences {
+  necessary: boolean
+  analytics: boolean
+  marketing: boolean
+}
+
+interface CookieBannerProps {
+  onAcceptAll: () => void
+  onRejectAll: () => void
+  onSavePreferences: (prefs: CookiePreferences) => void
+  onOpenCookiePolicy: () => void
+}
+
+const CookieBanner = ({ onAcceptAll, onRejectAll, onSavePreferences, onOpenCookiePolicy }: CookieBannerProps) => {
+  const [showDetails, setShowDetails] = useState(false)
+  const [preferences, setPreferences] = useState<CookiePreferences>({
+    necessary: true, // Sempre attivi
+    analytics: false,
+    marketing: false
+  })
+
+  const handleToggle = (key: keyof CookiePreferences) => {
+    if (key === 'necessary') return // Non può essere disattivato
+    setPreferences(prev => ({ ...prev, [key]: !prev[key] }))
+  }
+
+  return (
+    <motion.div
+      initial={{ y: 100, opacity: 0 }}
+      animate={{ y: 0, opacity: 1 }}
+      exit={{ y: 100, opacity: 0 }}
+      className="fixed bottom-0 left-0 right-0 z-[99] p-4 md:p-6"
+    >
+      <div className="max-w-4xl mx-auto card-glass rounded-2xl md:rounded-3xl overflow-hidden border border-white/10 shadow-2xl">
+        {/* Header */}
+        <div className="p-4 md:p-6">
+          <div className="flex items-start gap-4">
+            <div className="w-12 h-12 rounded-xl bg-accent-lime/20 flex items-center justify-center shrink-0">
+              <Cookie className="w-6 h-6 text-accent-lime" />
+            </div>
+            <div className="flex-1">
+              <h3 className="font-display font-bold text-lg mb-2">Questo sito utilizza i cookie 🍪</h3>
+              <p className="text-sm text-white/70">
+                Utilizziamo i cookie per migliorare la tua esperienza di navigazione e analizzare il traffico del sito. 
+                Puoi scegliere quali cookie accettare.{' '}
+                <button 
+                  onClick={onOpenCookiePolicy}
+                  className="text-accent-lime hover:underline"
+                >
+                  Leggi la Cookie Policy
+                </button>
+              </p>
+            </div>
+          </div>
+
+          {/* Dettagli Cookie (espandibile) */}
+          <AnimatePresence>
+            {showDetails && (
+              <motion.div
+                initial={{ height: 0, opacity: 0 }}
+                animate={{ height: 'auto', opacity: 1 }}
+                exit={{ height: 0, opacity: 0 }}
+                className="overflow-hidden"
+              >
+                <div className="mt-6 space-y-4">
+                  {/* Cookie Necessari */}
+                  <div className="flex items-center justify-between p-4 bg-white/5 rounded-xl">
+                    <div className="flex-1 pr-4">
+                      <div className="flex items-center gap-2 mb-1">
+                        <h4 className="font-semibold text-sm">Cookie Necessari</h4>
+                        <span className="text-xs bg-white/10 px-2 py-0.5 rounded-full">Sempre attivi</span>
+                      </div>
+                      <p className="text-xs text-white/60">
+                        Essenziali per il funzionamento del sito. Non possono essere disattivati.
+                      </p>
+                    </div>
+                    <div className="w-12 h-6 rounded-full bg-accent-lime/30 p-1 cursor-not-allowed">
+                      <div className="w-4 h-4 rounded-full bg-accent-lime translate-x-6" />
+                    </div>
+                  </div>
+
+                  {/* Cookie Analitici */}
+                  <div className="flex items-center justify-between p-4 bg-white/5 rounded-xl">
+                    <div className="flex-1 pr-4">
+                      <h4 className="font-semibold text-sm mb-1">Cookie Analitici</h4>
+                      <p className="text-xs text-white/60">
+                        Ci aiutano a capire come i visitatori interagiscono con il sito, raccogliendo informazioni in forma anonima.
+                      </p>
+                    </div>
+                    <button
+                      onClick={() => handleToggle('analytics')}
+                      className={`w-12 h-6 rounded-full p-1 transition-colors ${preferences.analytics ? 'bg-accent-lime/30' : 'bg-white/10'}`}
+                    >
+                      <div className={`w-4 h-4 rounded-full transition-all ${preferences.analytics ? 'bg-accent-lime translate-x-6' : 'bg-white/40 translate-x-0'}`} />
+                    </button>
+                  </div>
+
+                  {/* Cookie Marketing */}
+                  <div className="flex items-center justify-between p-4 bg-white/5 rounded-xl">
+                    <div className="flex-1 pr-4">
+                      <h4 className="font-semibold text-sm mb-1">Cookie di Marketing</h4>
+                      <p className="text-xs text-white/60">
+                        Utilizzati per mostrarti annunci pertinenti e misurare l&apos;efficacia delle campagne pubblicitarie.
+                      </p>
+                    </div>
+                    <button
+                      onClick={() => handleToggle('marketing')}
+                      className={`w-12 h-6 rounded-full p-1 transition-colors ${preferences.marketing ? 'bg-accent-lime/30' : 'bg-white/10'}`}
+                    >
+                      <div className={`w-4 h-4 rounded-full transition-all ${preferences.marketing ? 'bg-accent-lime translate-x-6' : 'bg-white/40 translate-x-0'}`} />
+                    </button>
+                  </div>
+                </div>
+              </motion.div>
+            )}
+          </AnimatePresence>
+        </div>
+
+        {/* Footer con pulsanti */}
+        <div className="p-4 md:p-6 pt-0 flex flex-col sm:flex-row gap-3">
+          {showDetails ? (
+            <>
+              <button
+                onClick={() => setShowDetails(false)}
+                className="flex-1 sm:flex-none px-6 py-3 text-sm font-semibold text-white/70 hover:text-white transition-colors"
+              >
+                ← Indietro
+              </button>
+              <button
+                onClick={() => onSavePreferences(preferences)}
+                className="flex-1 btn-primary !py-3 justify-center"
+              >
+                Salva preferenze
+              </button>
+            </>
+          ) : (
+            <>
+              <button
+                onClick={() => setShowDetails(true)}
+                className="flex-1 sm:flex-none inline-flex items-center justify-center gap-2 px-6 py-3 text-sm font-semibold text-white/70 hover:text-white border border-white/10 rounded-full transition-colors"
+              >
+                <Settings className="w-4 h-4" />
+                Personalizza
+              </button>
+              <button
+                onClick={onRejectAll}
+                className="flex-1 sm:flex-none px-6 py-3 text-sm font-semibold text-white/70 hover:text-white border border-white/10 rounded-full transition-colors"
+              >
+                Rifiuta tutti
+              </button>
+              <button
+                onClick={onAcceptAll}
+                className="flex-1 btn-primary !py-3 justify-center"
+              >
+                Accetta tutti
+              </button>
+            </>
+          )}
+        </div>
+      </div>
+    </motion.div>
+  )
+}
 
 // ============================================
 // COMPONENTE PRINCIPALE
@@ -496,6 +665,51 @@ export default function LandingPage() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
   const [formStatus, setFormStatus] = useState<'idle' | 'sending' | 'sent' | 'error'>('idle')
   const [activeModal, setActiveModal] = useState<ModalType>(null)
+  
+  // Cookie Banner State
+  const [showCookieBanner, setShowCookieBanner] = useState(false)
+  const [cookiePreferences, setCookiePreferences] = useState<CookiePreferences | null>(null)
+
+  // Controlla se l'utente ha già accettato/rifiutato i cookie
+  useEffect(() => {
+    const savedPreferences = localStorage.getItem('cookiePreferences')
+    if (savedPreferences) {
+      setCookiePreferences(JSON.parse(savedPreferences))
+      setShowCookieBanner(false)
+    } else {
+      // Mostra il banner dopo un breve delay per UX migliore
+      const timer = setTimeout(() => setShowCookieBanner(true), 1000)
+      return () => clearTimeout(timer)
+    }
+  }, [])
+
+  const handleAcceptAllCookies = () => {
+    const allAccepted: CookiePreferences = {
+      necessary: true,
+      analytics: true,
+      marketing: true
+    }
+    localStorage.setItem('cookiePreferences', JSON.stringify(allAccepted))
+    setCookiePreferences(allAccepted)
+    setShowCookieBanner(false)
+  }
+
+  const handleRejectAllCookies = () => {
+    const allRejected: CookiePreferences = {
+      necessary: true, // Sempre attivi
+      analytics: false,
+      marketing: false
+    }
+    localStorage.setItem('cookiePreferences', JSON.stringify(allRejected))
+    setCookiePreferences(allRejected)
+    setShowCookieBanner(false)
+  }
+
+  const handleSaveCookiePreferences = (prefs: CookiePreferences) => {
+    localStorage.setItem('cookiePreferences', JSON.stringify(prefs))
+    setCookiePreferences(prefs)
+    setShowCookieBanner(false)
+  }
 
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault()
@@ -550,6 +764,20 @@ export default function LandingPage() {
       >
         <TerminiServizioContent />
       </LegalModal>
+
+      {/* Cookie Banner */}
+      <AnimatePresence>
+        {showCookieBanner && (
+          <CookieBanner
+            onAcceptAll={handleAcceptAllCookies}
+            onRejectAll={handleRejectAllCookies}
+            onSavePreferences={handleSaveCookiePreferences}
+            onOpenCookiePolicy={() => {
+              setActiveModal('cookie')
+            }}
+          />
+        )}
+      </AnimatePresence>
       
       {/* Navigation */}
       <nav className="fixed top-0 left-0 right-0 z-50 bg-slate-950/80 backdrop-blur-xl border-b border-white/5">
@@ -874,6 +1102,10 @@ export default function LandingPage() {
               <button onClick={() => setActiveModal('privacy')} className="hover:text-white transition-colors">Privacy Policy</button>
               <button onClick={() => setActiveModal('cookie')} className="hover:text-white transition-colors">Cookie Policy</button>
               <button onClick={() => setActiveModal('termini')} className="hover:text-white transition-colors">Termini di Servizio</button>
+              <button onClick={() => setShowCookieBanner(true)} className="hover:text-white transition-colors flex items-center gap-1">
+                <Cookie className="w-3 h-3" />
+                Preferenze Cookie
+              </button>
             </div>
           </div>
         </div>
