@@ -1,6 +1,7 @@
 'use client'
 
 import { useState, FormEvent } from 'react'
+import Image from 'next/image'
 import { 
   Apple, MessageCircle, TrendingUp, Calendar, Trophy,
   Check, X, ChevronDown, Zap, Shield, Clock,
@@ -12,16 +13,9 @@ import { motion } from 'framer-motion'
 const fadeInUp = { hidden: { opacity: 0, y: 30 }, visible: { opacity: 1, y: 0 } }
 const staggerContainer = { hidden: { opacity: 0 }, visible: { opacity: 1, transition: { staggerChildren: 0.1 } } }
 
-// Logo placeholder - SOSTITUIRE CON IL VOSTRO LOGO
+// Logo Component - usa immagine PNG
 const CoachingHubLogo = ({ className = "w-10 h-10" }: { className?: string }) => (
-  <svg className={className} viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
-    <rect width="40" height="40" rx="10" fill="url(#logo-grad)"/>
-    <path d="M12 20L18 14M18 14L24 20M18 14V28" stroke="white" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"/>
-    <path d="M28 20L22 26M22 26L16 20M22 26V12" stroke="white" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" opacity="0.6"/>
-    <defs><linearGradient id="logo-grad" x1="0" y1="0" x2="40" y2="40" gradientUnits="userSpaceOnUse">
-      <stop stopColor="#1a65f5"/><stop offset="1" stopColor="#00d4aa"/>
-    </linearGradient></defs>
-  </svg>
+  <Image src="/logo.png" alt="Coaching Hub" width={40} height={40} className={className} />
 )
 
 const plans = [
@@ -64,16 +58,29 @@ export default function LandingPage() {
   const [openFaq, setOpenFaq] = useState<number | null>(null)
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
   const [formStatus, setFormStatus] = useState<'idle' | 'sending' | 'sent' | 'error'>('idle')
-  const [formData, setFormData] = useState({ nome: '', cognome: '', email: '', telefono: '', messaggio: '', privacy: false })
 
-  const handleSubmit = async (e: FormEvent) => {
+  const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault()
     setFormStatus('sending')
+    
+    const form = e.currentTarget
+    const formData = new FormData(form)
+    
     try {
-      const res = await fetch('/api/contact', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(formData) })
-      if (res.ok) { setFormStatus('sent'); setFormData({ nome: '', cognome: '', email: '', telefono: '', messaggio: '', privacy: false }) }
-      else { setFormStatus('error') }
-    } catch { setFormStatus('error') }
+      const res = await fetch('https://formspree.io/f/mpqqjkrn', {
+        method: 'POST',
+        body: formData,
+        headers: { 'Accept': 'application/json' }
+      })
+      if (res.ok) {
+        setFormStatus('sent')
+        form.reset()
+      } else {
+        setFormStatus('error')
+      }
+    } catch {
+      setFormStatus('error')
+    }
   }
 
   return (
@@ -369,7 +376,7 @@ export default function LandingPage() {
         </div>
       </section>
 
-      {/* Contact Form */}
+      {/* Contact Form - FORMSPREE */}
       <section id="contatti" className="relative section-padding">
         <div className="container-custom">
           <motion.div initial="hidden" whileInView="visible" viewport={{ once: true }} variants={staggerContainer} className="max-w-2xl mx-auto">
@@ -387,16 +394,16 @@ export default function LandingPage() {
               ) : (
                 <form onSubmit={handleSubmit} className="space-y-6">
                   <div className="grid md:grid-cols-2 gap-6">
-                    <div><label className="block text-sm font-medium mb-2">Nome *</label><div className="relative"><User className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-white/40" /><input type="text" required value={formData.nome} onChange={(e) => setFormData({...formData, nome: e.target.value})} className="w-full pl-12 pr-4 py-4 bg-white/5 border border-white/10 rounded-xl focus:border-accent-lime focus:outline-none" placeholder="Il tuo nome" /></div></div>
-                    <div><label className="block text-sm font-medium mb-2">Cognome *</label><div className="relative"><User className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-white/40" /><input type="text" required value={formData.cognome} onChange={(e) => setFormData({...formData, cognome: e.target.value})} className="w-full pl-12 pr-4 py-4 bg-white/5 border border-white/10 rounded-xl focus:border-accent-lime focus:outline-none" placeholder="Il tuo cognome" /></div></div>
+                    <div><label className="block text-sm font-medium mb-2">Nome *</label><div className="relative"><User className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-white/40" /><input type="text" name="nome" required className="w-full pl-12 pr-4 py-4 bg-white/5 border border-white/10 rounded-xl focus:border-accent-lime focus:outline-none" placeholder="Il tuo nome" /></div></div>
+                    <div><label className="block text-sm font-medium mb-2">Cognome *</label><div className="relative"><User className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-white/40" /><input type="text" name="cognome" required className="w-full pl-12 pr-4 py-4 bg-white/5 border border-white/10 rounded-xl focus:border-accent-lime focus:outline-none" placeholder="Il tuo cognome" /></div></div>
                   </div>
                   <div className="grid md:grid-cols-2 gap-6">
-                    <div><label className="block text-sm font-medium mb-2">Email *</label><div className="relative"><Mail className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-white/40" /><input type="email" required value={formData.email} onChange={(e) => setFormData({...formData, email: e.target.value})} className="w-full pl-12 pr-4 py-4 bg-white/5 border border-white/10 rounded-xl focus:border-accent-lime focus:outline-none" placeholder="tua@email.com" /></div></div>
-                    <div><label className="block text-sm font-medium mb-2">Telefono</label><div className="relative"><Phone className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-white/40" /><input type="tel" value={formData.telefono} onChange={(e) => setFormData({...formData, telefono: e.target.value})} className="w-full pl-12 pr-4 py-4 bg-white/5 border border-white/10 rounded-xl focus:border-accent-lime focus:outline-none" placeholder="+39 123 456 7890" /></div></div>
+                    <div><label className="block text-sm font-medium mb-2">Email *</label><div className="relative"><Mail className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-white/40" /><input type="email" name="email" required className="w-full pl-12 pr-4 py-4 bg-white/5 border border-white/10 rounded-xl focus:border-accent-lime focus:outline-none" placeholder="tua@email.com" /></div></div>
+                    <div><label className="block text-sm font-medium mb-2">Telefono</label><div className="relative"><Phone className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-white/40" /><input type="tel" name="telefono" className="w-full pl-12 pr-4 py-4 bg-white/5 border border-white/10 rounded-xl focus:border-accent-lime focus:outline-none" placeholder="+39 123 456 7890" /></div></div>
                   </div>
-                  <div><label className="block text-sm font-medium mb-2">Messaggio *</label><textarea required rows={5} value={formData.messaggio} onChange={(e) => setFormData({...formData, messaggio: e.target.value})} className="w-full px-4 py-4 bg-white/5 border border-white/10 rounded-xl focus:border-accent-lime focus:outline-none resize-none" placeholder="Scrivi qui il tuo messaggio..." /></div>
+                  <div><label className="block text-sm font-medium mb-2">Messaggio *</label><textarea name="messaggio" required rows={5} className="w-full px-4 py-4 bg-white/5 border border-white/10 rounded-xl focus:border-accent-lime focus:outline-none resize-none" placeholder="Scrivi qui il tuo messaggio..." /></div>
                   <div className="flex items-start gap-3">
-                    <input type="checkbox" id="privacy" required checked={formData.privacy} onChange={(e) => setFormData({...formData, privacy: e.target.checked})} className="mt-1 w-5 h-5 rounded border-white/20 bg-white/5" />
+                    <input type="checkbox" id="privacy" name="privacy" required className="mt-1 w-5 h-5 rounded border-white/20 bg-white/5" />
                     <label htmlFor="privacy" className="text-sm text-white/70">Ho letto e accetto la <a href="/privacy" className="text-accent-lime hover:underline">Privacy Policy</a> ai sensi del Regolamento UE 2016/679 (GDPR) e del D.Lgs. 196/2003. *</label>
                   </div>
                   {formStatus === 'error' && <div className="p-4 bg-red-500/20 border border-red-500/30 rounded-xl text-red-400 text-sm">Si è verificato un errore. Riprova o scrivi direttamente a coachinghubinfo@gmail.com</div>}
