@@ -5,7 +5,7 @@ import Image from 'next/image'
 import { 
   Apple, MessageCircle, TrendingUp, Calendar, Trophy,
   Check, X, ChevronDown, Zap, Shield, Clock,
-  ArrowRight, Star, Mail, Bell, Palette, Menu, 
+  ArrowRight, Mail, Bell, Palette, Menu, 
   XIcon, Send, User, Phone, Dumbbell, LucideIcon,
   Cookie, Settings
 } from 'lucide-react'
@@ -831,13 +831,6 @@ export default function LandingPage() {
                 <a href="#prezzi" className="btn-primary">Scopri i Piani <ArrowRight className="w-5 h-5 ml-2" /></a>
                 <a href="#contatti" className="btn-secondary"><Mail className="w-5 h-5 mr-2" /> Richiedi Informazioni</a>
               </motion.div>
-              <motion.div variants={fadeInUp} className="flex items-center gap-6 mt-10 justify-center lg:justify-start">
-                <div className="flex -space-x-3">{[1,2,3,4].map((i) => <div key={i} className="w-10 h-10 rounded-full bg-gradient-to-br from-brand-400 to-brand-600 border-2 border-slate-950" />)}</div>
-                <div className="text-left">
-                  <div className="flex items-center gap-1">{[1,2,3,4,5].map((i) => <Star key={i} className="w-4 h-4 fill-accent-lime text-accent-lime" />)}</div>
-                  <p className="text-sm text-white/60">Amato da +500 coach</p>
-                </div>
-              </motion.div>
             </motion.div>
             <motion.div initial={{ opacity: 0, scale: 0.9 }} animate={{ opacity: 1, scale: 1 }} transition={{ delay: 0.3, duration: 0.6 }} className="relative">
               <div className="relative">
@@ -872,7 +865,7 @@ export default function LandingPage() {
       </section>
 
       {/* Problem/Solution */}
-      <section className="relative section-padding bg-gradient-to-b from-transparent to-slate-900/50">
+      <section className="relative section-padding">
         <div className="container-custom">
           <motion.div initial="hidden" whileInView="visible" viewport={{ once: true }} variants={staggerContainer} className="text-center mb-16">
             <motion.h2 variants={fadeInUp} className="font-display text-3xl md:text-4xl lg:text-5xl font-bold mb-6">Sei stanco di gestire <span className="text-gradient">tutto a mano?</span></motion.h2>
@@ -920,7 +913,7 @@ export default function LandingPage() {
       </section>
 
       {/* Why Choose Us */}
-      <section className="relative section-padding bg-gradient-to-b from-slate-900/50 to-transparent">
+      <section className="relative section-padding">
         <div className="container-custom">
           <motion.div initial="hidden" whileInView="visible" viewport={{ once: true }} variants={staggerContainer} className="grid lg:grid-cols-2 gap-16 items-center">
             <motion.div variants={fadeInUp}>
@@ -947,14 +940,6 @@ export default function LandingPage() {
                   <p className="text-xl text-white/80 mb-2">ore risparmiate a settimana</p>
                   <p className="text-white/60">in media dai nostri utenti</p>
                 </div>
-                <div className="grid grid-cols-3 gap-4 mt-8">
-                  {[{ value: '500+', label: 'Coach attivi' }, { value: '15k+', label: 'Clienti gestiti' }, { value: '99%', label: 'Soddisfazione' }].map((stat, i) => (
-                    <div key={i} className="text-center p-4 bg-white/5 rounded-xl">
-                      <div className="text-xl font-display font-bold text-accent-lime">{stat.value}</div>
-                      <div className="text-xs text-white/60">{stat.label}</div>
-                    </div>
-                  ))}
-                </div>
               </div>
             </motion.div>
           </motion.div>
@@ -975,9 +960,9 @@ export default function LandingPage() {
               <span className="ml-2 text-xs bg-accent-lime/20 text-accent-lime px-3 py-1 rounded-full">Risparmia 2 mesi</span>
             </motion.div>
           </motion.div>
-          <motion.div initial="hidden" whileInView="visible" viewport={{ once: true }} variants={staggerContainer} className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+          <motion.div initial="hidden" whileInView="visible" viewport={{ once: true }} variants={staggerContainer} className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 items-stretch">
             {plans.map((plan, i) => (
-              <motion.div key={i} variants={fadeInUp} className={`relative card-glass p-6 rounded-3xl ${plan.popular ? 'border-accent-lime/50 scale-105' : ''}`}>
+              <motion.div key={i} variants={fadeInUp} className={`relative card-glass p-6 rounded-3xl flex flex-col ${plan.popular ? 'border-accent-lime/50 scale-105' : ''}`}>
                 {plan.popular && <div className="absolute -top-3 left-1/2 -translate-x-1/2 bg-accent-lime text-slate-950 text-xs font-bold px-4 py-1 rounded-full">Più Popolare</div>}
                 <h3 className="font-display text-xl font-bold mb-1">{plan.name}</h3>
                 <p className="text-white/60 text-sm mb-4">{plan.description}</p>
@@ -985,7 +970,7 @@ export default function LandingPage() {
                   <span className="text-4xl font-display font-bold">€{billingAnnual ? plan.priceAnnual : plan.priceMonthly.toFixed(2)}</span>
                   <span className="text-white/60">/{billingAnnual ? 'anno' : 'mese'}</span>
                 </div>
-                <ul className="space-y-3 mb-6">
+                <ul className="space-y-3 mb-6 flex-grow">
                   {plan.features.map((feature, j) => (
                     <li key={j} className="flex items-start gap-2 text-sm text-white/70">
                       <Check className="w-4 h-4 text-accent-lime shrink-0 mt-0.5" />
@@ -993,7 +978,7 @@ export default function LandingPage() {
                     </li>
                   ))}
                 </ul>
-                <a href={`/acquista/?plan=${plan.name.toLowerCase()}&billing=${billingAnnual ? 'annual' : 'monthly'}`} className={`w-full text-center ${plan.popular ? 'btn-primary' : 'btn-secondary'}`}>
+                <a href={`/acquista/?plan=${plan.name.toLowerCase()}&billing=${billingAnnual ? 'annual' : 'monthly'}`} className={`block w-full text-center mt-auto ${plan.popular ? 'btn-primary' : 'btn-secondary'}`}>
                   Scegli {plan.name}
                 </a>
               </motion.div>
@@ -1002,26 +987,6 @@ export default function LandingPage() {
           <motion.p initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeInUp} className="text-center text-white/50 text-sm mt-8">
             Tutti i prezzi sono IVA esclusa. Garanzia soddisfatto o rimborsato di 14 giorni.
           </motion.p>
-        </div>
-      </section>
-
-      {/* FAQ */}
-      <section id="faq" className="relative section-padding bg-gradient-to-b from-slate-900/50 to-transparent">
-        <div className="container-custom">
-          <motion.div initial="hidden" whileInView="visible" viewport={{ once: true }} variants={staggerContainer} className="text-center mb-12">
-            <motion.h2 variants={fadeInUp} className="font-display text-3xl md:text-4xl lg:text-5xl font-bold mb-6">Domande <span className="text-gradient">Frequenti</span></motion.h2>
-          </motion.div>
-          <motion.div initial="hidden" whileInView="visible" viewport={{ once: true }} variants={staggerContainer} className="max-w-3xl mx-auto space-y-4">
-            {faqs.map((faq, i) => (
-              <motion.div key={i} variants={fadeInUp} className="card-glass rounded-2xl overflow-hidden">
-                <button onClick={() => setOpenFaq(openFaq === i ? null : i)} className="w-full flex items-center justify-between p-6 text-left">
-                  <span className="font-semibold pr-4">{faq.q}</span>
-                  <ChevronDown className={`w-5 h-5 shrink-0 transition-transform ${openFaq === i ? 'rotate-180' : ''}`} />
-                </button>
-                {openFaq === i && <motion.div initial={{ height: 0, opacity: 0 }} animate={{ height: 'auto', opacity: 1 }} className="px-6 pb-6"><p className="text-white/70">{faq.a}</p></motion.div>}
-              </motion.div>
-            ))}
-          </motion.div>
         </div>
       </section>
 
@@ -1062,6 +1027,26 @@ export default function LandingPage() {
                 </form>
               )}
             </motion.div>
+          </motion.div>
+        </div>
+      </section>
+
+      {/* FAQ */}
+      <section id="faq" className="relative section-padding">
+        <div className="container-custom">
+          <motion.div initial="hidden" whileInView="visible" viewport={{ once: true }} variants={staggerContainer} className="text-center mb-12">
+            <motion.h2 variants={fadeInUp} className="font-display text-3xl md:text-4xl lg:text-5xl font-bold mb-6">Domande <span className="text-gradient">Frequenti</span></motion.h2>
+          </motion.div>
+          <motion.div initial="hidden" whileInView="visible" viewport={{ once: true }} variants={staggerContainer} className="max-w-3xl mx-auto space-y-4">
+            {faqs.map((faq, i) => (
+              <motion.div key={i} variants={fadeInUp} className="card-glass rounded-2xl overflow-hidden">
+                <button onClick={() => setOpenFaq(openFaq === i ? null : i)} className="w-full flex items-center justify-between p-6 text-left">
+                  <span className="font-semibold pr-4">{faq.q}</span>
+                  <ChevronDown className={`w-5 h-5 shrink-0 transition-transform ${openFaq === i ? 'rotate-180' : ''}`} />
+                </button>
+                {openFaq === i && <motion.div initial={{ height: 0, opacity: 0 }} animate={{ height: 'auto', opacity: 1 }} className="px-6 pb-6"><p className="text-white/70">{faq.a}</p></motion.div>}
+              </motion.div>
+            ))}
           </motion.div>
         </div>
       </section>
