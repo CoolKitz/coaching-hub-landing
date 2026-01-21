@@ -985,7 +985,7 @@ export default function LandingPage() {
             ))}
           </motion.div>
           <motion.p initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeInUp} className="text-center text-white/50 text-sm mt-8">
-            Tutti i prezzi sono IVA esclusa. Garanzia soddisfatto o rimborsato di 14 giorni.
+            Tutti i prezzi sono IVA inclusa. Garanzia soddisfatto o rimborsato di 14 giorni.
           </motion.p>
         </div>
       </section>
