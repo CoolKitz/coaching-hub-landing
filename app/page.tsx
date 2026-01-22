@@ -587,21 +587,6 @@ const CookieBanner = ({ onAcceptAll, onRejectAll, onSavePreferences, onOpenCooki
                     </button>
                   </div>
 
-                  {/* Cookie Marketing */}
-                  /*<div className="flex items-center justify-between p-4 bg-white/5 rounded-xl">
-                    <div className="flex-1 pr-4">
-                      <h4 className="font-semibold text-sm mb-1">Cookie di Marketing</h4>
-                      <p className="text-xs text-white/60">
-                        Utilizzati per mostrarti annunci pertinenti e misurare l&apos;efficacia delle campagne pubblicitarie.
-                      </p>
-                    </div>
-                    <button
-                      onClick={() => handleToggle('marketing')}
-                      className={`w-12 h-6 rounded-full p-1 transition-colors ${preferences.marketing ? 'bg-accent-lime/30' : 'bg-white/10'}`}
-                    >
-                      <div className={`w-4 h-4 rounded-full transition-all ${preferences.marketing ? 'bg-accent-lime translate-x-6' : 'bg-white/40 translate-x-0'}`} />
-                    </button>
-                  </div>*/
                 </div>
               </motion.div>
             )}
