@@ -1085,7 +1085,7 @@ export default function LandingPage() {
             <div><h4 className="font-display font-bold mb-4">Contatti</h4><ul className="space-y-3 text-white/60"><li className="flex items-center gap-2"><Mail className="w-4 h-4" /><a href="mailto:coachinghubinfo@gmail.com" className="hover:text-white transition-colors">coachinghubinfo@gmail.com</a></li><li>📍 Torino, Italia</li></ul></div>
           </div>
           <div className="mt-12 pt-8 border-t border-white/5 flex flex-col md:flex-row items-center justify-between gap-4 text-sm text-white/40">
-            <p>© 2026 Coaching Hub - Mauro Vallotti. Tutti i diritti riservati.
+            <p>© 2026 Coaching Hub - Mauro Vallotti. Tutti i diritti riservati.<br />
             Coaching Hub è un software in abbonamento. Il supporto fornito riguarda esclusivamente l’utilizzo del sistema e delle funzionalità incluse nella licenza.</p>
             <div className="flex gap-6">
               <button onClick={() => setActiveModal('privacy')} className="hover:text-white transition-colors">Privacy Policy</button>
