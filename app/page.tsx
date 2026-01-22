@@ -980,7 +980,7 @@ export default function LandingPage() {
                   ))}
                 </ul>
                 <a href={`${CHECKOUT_URL}/acquista/?plan=${plan.name.toLowerCase()}&billing=${billingAnnual ? 'annual' : 'monthly'}`} className={`block w-full text-center mt-auto ${plan.popular ? 'btn-primary' : 'btn-secondary'}`}>
-                  Attiva la licenza {plan.name}
+                  Attiva la licenza <br /></>{plan.name}
                 </a>
               </motion.div>
             ))}
