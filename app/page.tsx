@@ -336,9 +336,9 @@ const TerminiServizioContent = () => (
       <h3 className="text-lg font-display font-bold text-white mb-3">1. Definizioni</h3>
       <ul className="list-disc list-inside space-y-1">
         <li><strong className="text-white">&quot;Coaching Hub&quot;</strong> o <strong className="text-white">&quot;Piattaforma&quot;</strong>: il software gestionale per personal trainer e coach distribuito tramite questo sito</li>
-        <li><strong className="text-white">&quot;Titolare&quot;</strong> o <strong className="text-white">&quot;Fornitore&quot;</strong> del software: Mauro Vallotti, con sede in Via Roma 2, 10040 Rivalta di Torino (TO)</li>
+        <li><strong className="text-white">&quot;Titolare del software&quot;</strong>: Mauro Vallotti, con sede in Via Roma 2, 10040 Rivalta di Torino (TO)</li>
         <li><strong className="text-white">&quot;Utente&quot;</strong> o <strong className="text-white">&quot;Cliente&quot;</strong>: la persona fisica o giuridica che acquista una licenza di Coaching Hub</li>
-        <li><strong className="text-white">&quot;Servizio&quot;</strong>: l&apos;insieme delle funzionalità offerte dalla Piattaforma secondo il piano sottoscritto</li>
+        <li><strong className="text-white">&quot;Servizio&quot;</strong>: l&apos;insieme delle funzionalità software rese disponibili tramite la Piattaforma secondo il piano sottoscritto</li>
       </ul>
     </section>
 
@@ -357,7 +357,7 @@ const TerminiServizioContent = () => (
         <li>Connessione internet attiva</li>
         <li>Browser web aggiornato</li>
       </ul>
-      <p className="mt-2">Il Titolare fornisce supporto tecnico limitato all’attivazione e all’utilizzo del software, ma non è responsabile per problemi derivanti da hosting inadeguati o configurazioni errate del server.</p>
+      <p className="mt-2">Il Titolare del software fornisce supporto tecnico limitato all’attivazione e all’utilizzo del software, ma non è responsabile per problemi derivanti da hosting inadeguati o configurazioni errate del server.</p>
     </section>
 
     <section>
@@ -411,7 +411,7 @@ const TerminiServizioContent = () => (
 
     <section>
       <h3 className="text-lg font-display font-bold text-white mb-3">9. Responsabilità dell&apos;Utente sui Dati</h3>
-      <p>L&apos;Utente è l&apos;unico Titolare del trattamento dei dati dei propri clienti inseriti nella Piattaforma. Il Fornitore agisce come Responsabile del trattamento ai sensi dell&apos;Art. 28 del GDPR.</p>
+      <p>L&apos;Utente è l&apos;unico Titolare del trattamento dei dati dei propri clienti inseriti nella Piattaforma. Il Titolare del software agisce come Responsabile del trattamento ai sensi dell&apos;Art. 28 del GDPR.</p>
       <p className="mt-2">L&apos;Utente si impegna a:</p>
       <ul className="list-disc list-inside mt-2 space-y-1">
         <li>Informare adeguatamente i propri clienti sul trattamento dei loro dati</li>
