@@ -27,7 +27,7 @@ const plans = [
   { name: 'Business', description: 'Per professionisti affermati', priceAnnual: 349, priceMonthly: 34.90, popular: false,
     features: ['Fino a 200 clienti', 'Tutto di Professional, più:', 'Multi-coach (fino a 5)', 'Report avanzati', 'Notifiche push', 'Contenuti educativi', 'White label base', 'Landing page generata dal sistema'] },
   { name: 'Enterprise', description: 'Per centri e team', priceAnnual: 599, priceMonthly: 59.90, popular: false,
-    features: ['Clienti illimitati', 'Coach illimitati', 'Tutto di Business, più:', 'White label completo', 'Accesso API', 'Supporto prioritario', 'Landing page generata dal sistema'] }
+    features: ['Clienti illimitati', 'Coach illimitati', 'Tutto di Business, più:', 'White label completo', 'Accesso API', 'Supporto tecnico prioritario', 'Landing page generata dal sistema'] }
 ]
 
 interface Feature {
@@ -897,7 +897,7 @@ export default function LandingPage() {
         <div className="container-custom">
           <motion.div initial="hidden" whileInView="visible" viewport={{ once: true }} variants={staggerContainer} className="text-center mb-16">
             <motion.h2 variants={fadeInUp} className="font-display text-3xl md:text-4xl lg:text-5xl font-bold mb-6">Tutto quello che ti serve, <span className="text-gradient">in un unico posto.</span></motion.h2>
-            <motion.p variants={fadeInUp} className="text-lg text-white/60 max-w-2xl mx-auto">Dimentica i 10 strumenti diversi. Coaching Hub integra in un unico software le funzionalità essenziali per gestire i tuoi clienti in modo professionale.</motion.p>
+            <motion.p variants={fadeInUp} className="text-lg text-white/60 max-w-2xl mx-auto">Dimentica i 10 strumenti diversi. Coaching Hub integra tutto quello che serve per gestire i tuoi clienti come un vero professionista.</motion.p>
           </motion.div>
           <motion.div initial="hidden" whileInView="visible" viewport={{ once: true }} variants={staggerContainer} className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
             {features.map((feature, i) => (
@@ -922,9 +922,9 @@ export default function LandingPage() {
               <div className="space-y-6 mt-8">
                 {[
                   { icon: Zap, title: 'Semplicissimo da usare', description: 'Interfaccia intuitiva pensata per chi non è un tecnico. Se sai usare lo smartphone, sai usare Coaching Hub.' },
-                  { icon: Shield, title: 'I tuoi dati sono al sicuro', description: 'Il plugin si installa sul tuo sito WordPress. I dati dei tuoi clienti restano sul tuo hosting e sotto il tuo controllo.' },
-                  { icon: Clock, title: 'Risparmia 10+ ore a settimana', description: 'Automatizza le attività ripetitive e dedica più tempo a quello che conta davvero: i tuoi clienti.' },
-                  { icon: Palette, title: 'Personalizzabile', description: 'Adatta colori, logo e funzionalità direttamente dal plugin. I piani avanzati includono il white label completo.' }
+                  { icon: Shield, title: 'I tuoi dati sono al sicuro', description: 'Il plugin si installa sul TUO sito WordPress. I dati dei tuoi clienti restano tuoi, sempre.' },
+                  { icon: Clock, title: 'Risparmia 10+ ore a settimana', description: 'Automatizza le attività ripetitive e dedica più tempo a quello che conta: i tuoi clienti.' },
+                  { icon: Palette, title: 'Personalizzabile', description: 'Adatta colori, logo e funzionalità al tuo brand. I piani avanzati offrono anche white label completo.' }
                 ].map((item, i) => (
                   <div key={i} className="flex gap-4">
                     <div className="w-12 h-12 rounded-xl bg-brand-500/20 flex items-center justify-center shrink-0"><item.icon className="w-6 h-6 text-brand-400" /></div>
@@ -980,7 +980,7 @@ export default function LandingPage() {
                   ))}
                 </ul>
                 <a href={`${CHECKOUT_URL}/acquista/?plan=${plan.name.toLowerCase()}&billing=${billingAnnual ? 'annual' : 'monthly'}`} className={`block w-full text-center mt-auto ${plan.popular ? 'btn-primary' : 'btn-secondary'}`}>
-                  Scegli {plan.name}
+                  Attiva la licenza {plan.name}
                 </a>
               </motion.div>
             ))}
@@ -1086,8 +1086,7 @@ export default function LandingPage() {
           </div>
           <div className="mt-12 pt-8 border-t border-white/5 flex flex-col md:flex-row items-center justify-between gap-4 text-sm text-white/40">
             <p>© 2026 Coaching Hub - Mauro Vallotti. Tutti i diritti riservati.<br />
-            Coaching Hub è un software in abbonamento. Il supporto fornito riguarda<br />
-            esclusivamente l’utilizzo del sistema e delle funzionalità incluse nella licenza.</p>
+            Coaching Hub è un software in abbonamento. Il supporto fornito riguarda esclusivamente l’utilizzo del sistema e delle funzionalità incluse nella licenza.</p>
             <div className="flex gap-6">
               <button onClick={() => setActiveModal('privacy')} className="hover:text-white transition-colors">Privacy Policy</button>
               <button onClick={() => setActiveModal('cookie')} className="hover:text-white transition-colors">Cookie Policy</button>
