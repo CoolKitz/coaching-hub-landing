@@ -336,7 +336,7 @@ const TerminiServizioContent = () => (
       <h3 className="text-lg font-display font-bold text-white mb-3">1. Definizioni</h3>
       <ul className="list-disc list-inside space-y-1">
         <li><strong className="text-white">&quot;Coaching Hub&quot;</strong> o <strong className="text-white">&quot;Piattaforma&quot;</strong>: il software gestionale per personal trainer e coach distribuito tramite questo sito</li>
-        <li><strong className="text-white">&quot;Titolare&quot;</strong> o <strong className="text-white">&quot;Fornitore&quot;</strong>: Mauro Vallotti, con sede in Via Roma 2, 10040 Rivalta di Torino (TO)</li>
+        <li><strong className="text-white">&quot;Titolare&quot;</strong> o <strong className="text-white">&quot;Fornitore&quot;</strong> del software: Mauro Vallotti, con sede in Via Roma 2, 10040 Rivalta di Torino (TO)</li>
         <li><strong className="text-white">&quot;Utente&quot;</strong> o <strong className="text-white">&quot;Cliente&quot;</strong>: la persona fisica o giuridica che acquista una licenza di Coaching Hub</li>
         <li><strong className="text-white">&quot;Servizio&quot;</strong>: l&apos;insieme delle funzionalità offerte dalla Piattaforma secondo il piano sottoscritto</li>
       </ul>
@@ -346,6 +346,7 @@ const TerminiServizioContent = () => (
       <h3 className="text-lg font-display font-bold text-white mb-3">2. Oggetto del Contratto</h3>
       <p>I presenti Termini di Servizio regolano l&apos;utilizzo della piattaforma Coaching Hub. Con l&apos;acquisto di una licenza, l&apos;Utente accetta integralmente i presenti termini.</p>
       <p className="mt-2">Coaching Hub è un software gestionale che permette a personal trainer, nutrizionisti e coach di gestire i propri clienti attraverso funzionalità quali: schede allenamento, piani alimentari, messaggistica, tracciamento progressi e calendario appuntamenti.</p>
+      <p className="mt-2">Coaching Hub è fornito esclusivamente come <strong>licenza software</strong>. Eventuali attività di supporto sono accessorie e limitate all’utilizzo del software e non costituiscono prestazioni di servizi professionali.</p>
     </section>
 
     <section>
@@ -356,7 +357,7 @@ const TerminiServizioContent = () => (
         <li>Connessione internet attiva</li>
         <li>Browser web aggiornato</li>
       </ul>
-      <p className="mt-2">Il Titolare fornisce supporto per l&apos;installazione iniziale ma non è responsabile per problemi derivanti da hosting inadeguati o configurazioni errate del server.</p>
+      <p className="mt-2">Il Titolare fornisce supporto tecnico limitato all’attivazione e all’utilizzo del software, ma non è responsabile per problemi derivanti da hosting inadeguati o configurazioni errate del server.</p>
     </section>
 
     <section>
@@ -374,18 +375,17 @@ const TerminiServizioContent = () => (
     <section>
       <h3 className="text-lg font-display font-bold text-white mb-3">5. Pagamento e Fatturazione</h3>
       <ul className="list-disc list-inside space-y-1">
-        <li>Il pagamento avviene tramite PayPal o carta di credito</li>
-        <li>L&apos;abbonamento si rinnova automaticamente alla scadenza, salvo disdetta</li>
-        <li>La fattura viene emessa e inviata via email dopo ogni pagamento</li>
-        <li>In caso di mancato pagamento, il servizio verrà sospeso dopo 7 giorni di ritardo</li>
+        <li>Il pagamento dell’abbonamento avviene tramite piattaforme di pagamento esterne che agiscono come Merchant of Record, le quali gestiscono l’incasso, la fatturazione e gli adempimenti fiscali nei confronti dell’Utente.</li>
+        <li>L’abbonamento si rinnova automaticamente alla scadenza, salvo disdetta effettuata secondo le modalità indicate dalla piattaforma di pagamento utilizzata.</li>
+        <li>In caso di mancato pagamento, l’accesso alla licenza potrà essere sospeso o revocato.</li>
       </ul>
     </section>
 
     <section>
       <h3 className="text-lg font-display font-bold text-white mb-3">6. Diritto di Recesso e Rimborsi</h3>
       <p>Ai sensi del Codice del Consumo (D.Lgs. 206/2005), l&apos;Utente consumatore ha diritto di recedere dal contratto entro 14 giorni dall&apos;acquisto, senza dover fornire alcuna motivazione.</p>
-      <p className="mt-2">Per esercitare il diritto di recesso, è sufficiente inviare una comunicazione a <a href="mailto:coachinghubinfo@gmail.com" className="text-accent-lime hover:underline">coachinghubinfo@gmail.com</a> entro il termine previsto.</p>
-      <p className="mt-2"><strong className="text-white">Garanzia soddisfatto o rimborsato:</strong> Oltre al diritto di recesso legale, offriamo una garanzia di 14 giorni. Se non sei soddisfatto, ti rimborsiamo l&apos;intero importo.</p>
+      <p className="mt-2">Il diritto di recesso e le eventuali richieste di rimborso sono gestite tramite la piattaforma di pagamento utilizzata per l’acquisto, secondo le relative condizioni.</p>
+      <p className="mt-2"><strong className="text-white">Garanzia soddisfatto o rimborsato:</strong> Oltre al diritto di recesso previsto dalla legge, è offerta una garanzia soddisfatto o rimborsato di 14 giorni dalla data di acquisto della licenza.</p>
     </section>
 
     <section>
@@ -449,7 +449,7 @@ const TerminiServizioContent = () => (
       <ul className="list-disc list-inside space-y-1">
         <li>Il supporto è fornito via email all&apos;indirizzo <a href="mailto:coachinghubinfo@gmail.com" className="text-accent-lime hover:underline">coachinghubinfo@gmail.com</a></li>
         <li>Tempo di risposta: entro 24 ore lavorative (48 ore per piani Starter)</li>
-        <li>I piani Business ed Enterprise includono supporto prioritario</li>
+        <li>I piani Business ed Enterprise includono supporto tecnico prioritario</li>
         <li>Il supporto copre problemi relativi al funzionamento della Piattaforma, non alla configurazione dell&apos;hosting o di WordPress</li>
       </ul>
     </section>
