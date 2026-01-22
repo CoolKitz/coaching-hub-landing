@@ -157,7 +157,7 @@ const PrivacyPolicyContent = () => (
       <p>I dati personali sono trattati per le seguenti finalità:</p>
       <ul className="list-disc list-inside mt-2 space-y-1">
         <li><strong className="text-white">Rispondere alle richieste:</strong> gestire le richieste di informazioni inviate tramite il form di contatto</li>
-        <li><strong className="text-white">Erogazione del servizio:</strong> fornire accesso alla piattaforma Coaching Hub agli utenti registrati</li>
+        <li><strong className="text-white">Erogazione della licenza software:</strong> fornire accesso alle funzionalità della piattaforma Coaching Hub agli utenti registrati</li>
         <li><strong className="text-white">Comunicazioni di servizio:</strong> inviare comunicazioni tecniche relative al servizio acquistato</li>
         <li><strong className="text-white">Adempimenti legali:</strong> adempiere agli obblighi previsti dalla legge</li>
         <li><strong className="text-white">Miglioramento del servizio:</strong> analisi statistiche aggregate per migliorare l&apos;esperienza utente</li>
@@ -169,7 +169,7 @@ const PrivacyPolicyContent = () => (
       <p>Il trattamento dei dati personali si basa su:</p>
       <ul className="list-disc list-inside mt-2 space-y-1">
         <li><strong className="text-white">Consenso:</strong> per l&apos;invio di comunicazioni tramite il form di contatto (Art. 6.1.a GDPR)</li>
-        <li><strong className="text-white">Esecuzione contrattuale:</strong> per l&apos;erogazione dei servizi richiesti (Art. 6.1.b GDPR)</li>
+        <li><strong className="text-white">Esecuzione contrattuale:</strong> per la fornitura della licenza software e delle funzionalità richieste</li>
         <li><strong className="text-white">Obbligo legale:</strong> per adempiere a obblighi di legge (Art. 6.1.c GDPR)</li>
         <li><strong className="text-white">Interesse legittimo:</strong> per la sicurezza del sito e analisi statistiche aggregate (Art. 6.1.f GDPR)</li>
       </ul>
@@ -185,7 +185,7 @@ const PrivacyPolicyContent = () => (
       <p>I dati personali saranno conservati per il tempo strettamente necessario a conseguire le finalità per le quali sono stati raccolti:</p>
       <ul className="list-disc list-inside mt-2 space-y-1">
         <li><strong className="text-white">Dati del form di contatto:</strong> 12 mesi dall&apos;ultimo contatto</li>
-        <li><strong className="text-white">Dati degli utenti registrati:</strong> per tutta la durata del rapporto contrattuale e per i 10 anni successivi (obblighi fiscali)</li>
+        <li><strong className="text-white">Dati degli utenti registrati:</strong> per tutta la durata del rapporto contrattuale e per il periodo successivo necessario a tutelare i diritti del Titolare e adempiere ad obblighi di legge applicabili</li>
         <li><strong className="text-white">Dati di navigazione:</strong> 26 mesi</li>
       </ul>
     </section>
@@ -194,7 +194,7 @@ const PrivacyPolicyContent = () => (
       <h3 className="text-lg font-display font-bold text-white mb-3">7. Comunicazione e Diffusione dei Dati</h3>
       <p>I dati personali potranno essere comunicati a:</p>
       <ul className="list-disc list-inside mt-2 space-y-1">
-        <li>Fornitori di servizi tecnici (hosting, email) che agiscono come Responsabili del trattamento</li>
+        <li>Fornitori di servizi tecnici e piattaforme di pagamento che agiscono come Responsabili del trattamento o Titolari autonomi, secondo quanto previsto dalle rispettive informative privacy</li>
         <li>Autorità competenti, quando richiesto dalla legge</li>
       </ul>
       <p className="mt-2">I dati non saranno in alcun modo diffusi o ceduti a terzi per finalità di marketing senza il tuo esplicito consenso.</p>
@@ -264,23 +264,23 @@ const CookiePolicyContent = () => (
             <li>Cookie per la sicurezza</li>
             <li>Cookie per ricordare le preferenze sui cookie</li>
           </ul>
-          <p className="text-xs text-white/50 mt-2">Base giuridica: Interesse legittimo (Art. 6.1.f GDPR)</p>
+          <p className="text-xs text-white/50 mt-2">Base giuridica: necessità tecnica per il corretto funzionamento del sito (Art. 6.1.b GDPR e Art. 122 Codice Privacy)</p>
         </div>
 
         <div className="p-4 bg-white/5 rounded-xl">
           <h4 className="font-bold text-white mb-2">3.2 Cookie Analitici</h4>
-          <p className="text-sm">Questi cookie ci permettono di capire come i visitatori interagiscono con il sito, raccogliendo informazioni in forma aggregata e anonima.</p>
+          <p className="text-sm">Questi cookie raccolgono informazioni in forma aggregata e anonima, senza consentire l&apos;identificazione diretta dell&apos;utente</p>
           <ul className="list-disc list-inside mt-2 text-sm space-y-1">
             <li>Vercel Analytics (se attivato): analisi delle performance</li>
           </ul>
-          <p className="text-xs text-white/50 mt-2">Base giuridica: Consenso (Art. 6.1.a GDPR)</p>
+          <p className="text-xs text-white/50 mt-2">Base giuridica: consenso dell’utente (Art. 6.1.a GDPR), espresso tramite il banner cookie</p>
         </div>
 
         <div className="p-4 bg-white/5 rounded-xl">
           <h4 className="font-bold text-white mb-2">3.3 Cookie di Terze Parti</h4>
           <p className="text-sm">Il sito potrebbe contenere collegamenti a servizi di terze parti che installano propri cookie:</p>
           <ul className="list-disc list-inside mt-2 text-sm space-y-1">
-            <li><strong className="text-white">Formspree:</strong> per la gestione del form di contatto</li>
+            <li><strong className="text-white">Formspree:</strong> servizio di terze parti per la gestione del form di contatto, che potrebbe utilizzare cookie o tecnologie simili. Per maggiori informazioni, consulta l’informativa privacy del rispettivo fornitore.</li>
           </ul>
           <p className="text-xs text-white/50 mt-2">Per questi cookie, consulta le rispettive informative privacy.</p>
         </div>
@@ -291,7 +291,7 @@ const CookiePolicyContent = () => (
       <h3 className="text-lg font-display font-bold text-white mb-3">4. Durata dei Cookie</h3>
       <ul className="list-disc list-inside space-y-1">
         <li><strong className="text-white">Cookie di sessione:</strong> cancellati automaticamente alla chiusura del browser</li>
-        <li><strong className="text-white">Cookie persistenti:</strong> conservati per un periodo massimo di 12 mesi</li>
+        <li><strong className="text-white">Cookie persistenti:</strong> conservati per un periodo variabile in base alla finalità e comunque non superiore a 12 mesi, salvo diversa indicazione del fornitore terzo</li>
       </ul>
     </section>
 
@@ -311,7 +311,7 @@ const CookiePolicyContent = () => (
           </ul>
         </div>
       </div>
-      
+      <p className="text-sm">È sempre possibile modificare o revocare il consenso ai cookie non necessari tramite il banner cookie o le impostazioni disponibili sul sito.</p>
       <p className="mt-4 text-sm"><strong className="text-white">Nota:</strong> Disabilitare i cookie tecnici potrebbe compromettere il corretto funzionamento del sito.</p>
     </section>
 
