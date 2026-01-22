@@ -660,6 +660,7 @@ const CookieBanner = ({ onAcceptAll, onRejectAll, onSavePreferences, onOpenCooki
 // ============================================
 
 export default function LandingPage() {
+  const CHECKOUT_URL = 'https://test.maurovallotti.it'
   const [billingAnnual, setBillingAnnual] = useState(true)
   const [openFaq, setOpenFaq] = useState<number | null>(null)
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
@@ -978,7 +979,7 @@ export default function LandingPage() {
                     </li>
                   ))}
                 </ul>
-                <a href={`/acquista/?plan=${plan.name.toLowerCase()}&billing=${billingAnnual ? 'annual' : 'monthly'}`} className={`block w-full text-center mt-auto ${plan.popular ? 'btn-primary' : 'btn-secondary'}`}>
+                <a href={`${CHECKOUT_URL}/acquista/?plan=${plan.name.toLowerCase()}&billing=${billingAnnual ? 'annual' : 'monthly'}`} className={`block w-full text-center mt-auto ${plan.popular ? 'btn-primary' : 'btn-secondary'}`}>
                   Scegli {plan.name}
                 </a>
               </motion.div>
@@ -1061,7 +1062,7 @@ export default function LandingPage() {
               <motion.p variants={fadeInUp} className="text-lg text-white/60 max-w-2xl mx-auto mb-8">Unisciti ai coach che hanno scelto di risparmiare tempo e offrire un&apos;esperienza premium ai loro clienti.</motion.p>
               <motion.a variants={fadeInUp} href="#prezzi" className="btn-primary inline-flex">Scegli il tuo piano <ArrowRight className="w-5 h-5 ml-2" /></motion.a>
               <motion.div variants={fadeInUp} className="flex flex-wrap items-center justify-center gap-6 mt-8 text-sm text-white/60">
-                <div className="flex items-center gap-2"><Check className="w-4 h-4 text-accent-lime" /><span>Installazione in 5 minuti</span></div>
+                <div className="flex items-center gap-2"><Check className="w-4 h-4 text-accent-lime" /><span>Installazione personalizzata </span></div>
                 <div className="flex items-center gap-2"><Check className="w-4 h-4 text-accent-lime" /><span>Garanzia 14 giorni</span></div>
                 <div className="flex items-center gap-2"><Check className="w-4 h-4 text-accent-lime" /><span>Supporto incluso</span></div>
               </motion.div>
