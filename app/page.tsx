@@ -1086,7 +1086,8 @@ export default function LandingPage() {
           </div>
           <div className="mt-12 pt-8 border-t border-white/5 flex flex-col md:flex-row items-center justify-between gap-4 text-sm text-white/40">
             <p>© 2026 Coaching Hub - Mauro Vallotti. Tutti i diritti riservati.<br />
-            Coaching Hub è un software in abbonamento. Il supporto fornito riguarda esclusivamente l’utilizzo del sistema e delle funzionalità incluse nella licenza.</p>
+            Coaching Hub è un software in abbonamento. Il supporto fornito riguarda esclusivamente<br />
+            l’utilizzo del sistema e delle funzionalità incluse nella licenza.</p>
             <div className="flex gap-6">
               <button onClick={() => setActiveModal('privacy')} className="hover:text-white transition-colors">Privacy Policy</button>
               <button onClick={() => setActiveModal('cookie')} className="hover:text-white transition-colors">Cookie Policy</button>
