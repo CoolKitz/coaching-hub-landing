@@ -1,5 +1,6 @@
 'use client'
 
+import { Analytics } from '@vercel/analytics/react'
 import { useState, useEffect, FormEvent } from 'react'
 import Image from 'next/image'
 import { 
@@ -508,7 +509,6 @@ const CookieBanner = ({ onAcceptAll, onRejectAll, onSavePreferences, onOpenCooki
   const [preferences, setPreferences] = useState<CookiePreferences>({
     necessary: true, // Sempre attivi
     analytics: false,
-    marketing: false
   })
 
   const handleToggle = (key: keyof CookiePreferences) => {
@@ -588,7 +588,7 @@ const CookieBanner = ({ onAcceptAll, onRejectAll, onSavePreferences, onOpenCooki
                   </div>
 
                   {/* Cookie Marketing */}
-                  <div className="flex items-center justify-between p-4 bg-white/5 rounded-xl">
+                  /*<div className="flex items-center justify-between p-4 bg-white/5 rounded-xl">
                     <div className="flex-1 pr-4">
                       <h4 className="font-semibold text-sm mb-1">Cookie di Marketing</h4>
                       <p className="text-xs text-white/60">
@@ -601,7 +601,7 @@ const CookieBanner = ({ onAcceptAll, onRejectAll, onSavePreferences, onOpenCooki
                     >
                       <div className={`w-4 h-4 rounded-full transition-all ${preferences.marketing ? 'bg-accent-lime translate-x-6' : 'bg-white/40 translate-x-0'}`} />
                     </button>
-                  </div>
+                  </div>*/
                 </div>
               </motion.div>
             )}
@@ -1100,6 +1100,7 @@ export default function LandingPage() {
           </div>
         </div>
       </footer>
+      {cookiePreferences?.analytics === true && <Analytics />}
     </div>
   )
 }
