@@ -1086,6 +1086,7 @@ export default function LandingPage() {
           </div>
         </div>
       </footer>
+      {/* Analytics condizionale - DEVE ESSERE QUI */}
       {cookiePreferences?.analytics === true && <Analytics />}
     </div>
   )
