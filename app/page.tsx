@@ -897,7 +897,7 @@ export default function LandingPage() {
         <div className="container-custom">
           <motion.div initial="hidden" whileInView="visible" viewport={{ once: true }} variants={staggerContainer} className="text-center mb-16">
             <motion.h2 variants={fadeInUp} className="font-display text-3xl md:text-4xl lg:text-5xl font-bold mb-6">Tutto quello che ti serve, <span className="text-gradient">in un unico posto.</span></motion.h2>
-            <motion.p variants={fadeInUp} className="text-lg text-white/60 max-w-2xl mx-auto">Dimentica i 10 strumenti diversi. Coaching Hub integra tutto quello che serve per gestire i tuoi clienti come un vero professionista.</motion.p>
+            <motion.p variants={fadeInUp} className="text-lg text-white/60 max-w-2xl mx-auto">Dimentica i 10 strumenti diversi. Coaching Hub integra in un unico software le funzionalità essenziali per gestire i tuoi clienti in modo professionale.</motion.p>
           </motion.div>
           <motion.div initial="hidden" whileInView="visible" viewport={{ once: true }} variants={staggerContainer} className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
             {features.map((feature, i) => (
