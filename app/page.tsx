@@ -21,13 +21,13 @@ const CoachingHubLogo = ({ className = "w-10 h-10" }: { className?: string }) =>
 
 const plans = [
   { name: 'Starter', description: 'Perfetto per iniziare', priceAnnual: 99, priceMonthly: 9.90, popular: false,
-    features: ['Fino a 10 clienti', 'Schede allenamento', 'Piani alimentari', 'Calendario', 'Messaggistica', 'Landing page inclusa'] },
+    features: ['Fino a 10 clienti', 'Schede allenamento', 'Piani alimentari', 'Calendario', 'Messaggistica', 'Landing page generata dal sistema'] },
   { name: 'Professional', description: 'Per chi fa sul serio', priceAnnual: 199, priceMonthly: 19.90, popular: true,
-    features: ['Fino a 50 clienti', 'Tutto di Starter, più:', 'Check-in settimanali', 'Tracciamento progressi', 'Foto progressi', 'Gamification', 'Report base', 'Landing page inclusa'] },
+    features: ['Fino a 50 clienti', 'Tutto di Starter, più:', 'Check-in settimanali', 'Tracciamento progressi', 'Foto progressi', 'Gamification', 'Report base', 'Landing page generata dal sistema'] },
   { name: 'Business', description: 'Per professionisti affermati', priceAnnual: 349, priceMonthly: 34.90, popular: false,
-    features: ['Fino a 200 clienti', 'Tutto di Professional, più:', 'Multi-coach (fino a 5)', 'Report avanzati', 'Notifiche push', 'Contenuti educativi', 'White label base', 'Landing page inclusa'] },
+    features: ['Fino a 200 clienti', 'Tutto di Professional, più:', 'Multi-coach (fino a 5)', 'Report avanzati', 'Notifiche push', 'Contenuti educativi', 'White label base', 'Landing page generata dal sistema'] },
   { name: 'Enterprise', description: 'Per centri e team', priceAnnual: 599, priceMonthly: 59.90, popular: false,
-    features: ['Clienti illimitati', 'Coach illimitati', 'Tutto di Business, più:', 'White label completo', 'Accesso API', 'Supporto prioritario', 'Landing page inclusa'] }
+    features: ['Clienti illimitati', 'Coach illimitati', 'Tutto di Business, più:', 'White label completo', 'Accesso API', 'Supporto prioritario', 'Landing page generata dal sistema'] }
 ]
 
 interface Feature {
@@ -47,12 +47,12 @@ const features: Feature[] = [
 ]
 
 const faqs = [
-  { q: 'Ho bisogno di competenze tecniche per usarlo?', a: "Assolutamente no. Se sai usare Facebook, sai usare Coaching Hub. L'installazione la facciamo insieme in videochiamata se serve." },
+  { q: 'Ho bisogno di competenze tecniche per usarlo?', a: "Coaching Hub è progettato per essere semplice e intuitivo. L’installazione e l’attivazione sono guidate passo-passo tramite istruzioni e supporto tecnico dedicato, così puoi iniziare rapidamente anche senza competenze tecniche." },
   { q: 'Funziona su telefono?', a: "Sì! I tuoi clienti possono accedere da qualsiasi dispositivo: telefono, tablet o computer." },
   { q: 'I miei clienti devono scaricare un\'app?', a: "No, non serve scaricare nulla. Accedono direttamente dal browser del telefono." },
-  { q: 'Posso provarlo prima di comprare?', a: "Certo! Offriamo una garanzia soddisfatto o rimborsato di 14 giorni." },
+  { q: 'Posso provarlo prima di comprare?', a: "Certo! Hai 14 giorni per provare Coaching Hub. Se il software non soddisfa le tue esigenze, puoi richiedere il rimborso completo della licenza entro questo periodo." },
   { q: 'Posso passare a un piano superiore in seguito?', a: "Sì, puoi fare upgrade in qualsiasi momento. Paghi solo la differenza proporzionale al tempo rimanente." },
-  { q: 'Come funziona il supporto?', a: "Supporto via email con risposta entro 24 ore lavorative. Per i piani Business ed Enterprise c'è anche supporto prioritario." }
+  { q: 'Come funziona il supporto?', a: "Il supporto è disponibile via email con risposta entro 24 ore lavorative ed è dedicato all’utilizzo del software, alla gestione della licenza e alle funzionalità incluse. I piani Business ed Enterprise includono supporto prioritario." }
 ]
 
 // ============================================
@@ -820,7 +820,7 @@ export default function LandingPage() {
             <motion.div initial="hidden" animate="visible" variants={staggerContainer} className="text-center lg:text-left">
               <motion.div variants={fadeInUp} className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/5 border border-white/10 mb-6">
                 <Zap className="w-4 h-4 text-accent-lime" />
-                <span className="text-sm text-white/80">La piattaforma #1 per coach in Italia</span>
+                <span className="text-sm text-white/80">La soluzione software per gestire clienti, piani e progressi in un unico posto</span>
               </motion.div>
               <motion.h1 variants={fadeInUp} className="font-display text-4xl md:text-5xl lg:text-6xl font-bold leading-tight mb-6">
                 Gestisci i tuoi clienti <span className="text-gradient">come un professionista.</span>
@@ -986,7 +986,9 @@ export default function LandingPage() {
             ))}
           </motion.div>
           <motion.p initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeInUp} className="text-center text-white/50 text-sm mt-8">
-            Tutti i prezzi sono IVA inclusa. Garanzia soddisfatto o rimborsato di 14 giorni.
+            Tutti i prezzi sono IVA inclusa. Hai 14 giorni per provare il software. Se non soddisfa le tue aspettative, puoi richiedere il rimborso della licenza.
+            Coaching Hub è un software in abbonamento. L’acquisto include una licenza d’uso del plugin e l’accesso alle funzionalità descritte.
+            Eventuale supporto fornito è limitato all’attivazione e all’utilizzo del software e non costituisce prestazione di servizi professionali personalizzati.
           </motion.p>
         </div>
       </section>
@@ -1062,9 +1064,9 @@ export default function LandingPage() {
               <motion.p variants={fadeInUp} className="text-lg text-white/60 max-w-2xl mx-auto mb-8">Unisciti ai coach che hanno scelto di risparmiare tempo e offrire un&apos;esperienza premium ai loro clienti.</motion.p>
               <motion.a variants={fadeInUp} href="#prezzi" className="btn-primary inline-flex">Scegli il tuo piano <ArrowRight className="w-5 h-5 ml-2" /></motion.a>
               <motion.div variants={fadeInUp} className="flex flex-wrap items-center justify-center gap-6 mt-8 text-sm text-white/60">
-                <div className="flex items-center gap-2"><Check className="w-4 h-4 text-accent-lime" /><span>Installazione personalizzata </span></div>
-                <div className="flex items-center gap-2"><Check className="w-4 h-4 text-accent-lime" /><span>Garanzia 14 giorni</span></div>
-                <div className="flex items-center gap-2"><Check className="w-4 h-4 text-accent-lime" /><span>Supporto incluso</span></div>
+                <div className="flex items-center gap-2"><Check className="w-4 h-4 text-accent-lime" /><span>Supporto alla configurazione di base del software</span></div>
+                <div className="flex items-center gap-2"><Check className="w-4 h-4 text-accent-lime" /><span>14 giorni per provare il software</span></div>
+                <div className="flex items-center gap-2"><Check className="w-4 h-4 text-accent-lime" /><span>Supporto tecnico per l’attivazione della licenza</span></div>
               </motion.div>
             </div>
           </motion.div>
@@ -1083,7 +1085,8 @@ export default function LandingPage() {
             <div><h4 className="font-display font-bold mb-4">Contatti</h4><ul className="space-y-3 text-white/60"><li className="flex items-center gap-2"><Mail className="w-4 h-4" /><a href="mailto:coachinghubinfo@gmail.com" className="hover:text-white transition-colors">coachinghubinfo@gmail.com</a></li><li>📍 Torino, Italia</li></ul></div>
           </div>
           <div className="mt-12 pt-8 border-t border-white/5 flex flex-col md:flex-row items-center justify-between gap-4 text-sm text-white/40">
-            <p>© 2026 Coaching Hub - Mauro Vallotti. Tutti i diritti riservati.</p>
+            <p>© 2026 Coaching Hub - Mauro Vallotti. Tutti i diritti riservati.
+            Coaching Hub è un software in abbonamento. Il supporto fornito riguarda esclusivamente l’utilizzo del sistema e delle funzionalità incluse nella licenza.</p>
             <div className="flex gap-6">
               <button onClick={() => setActiveModal('privacy')} className="hover:text-white transition-colors">Privacy Policy</button>
               <button onClick={() => setActiveModal('cookie')} className="hover:text-white transition-colors">Cookie Policy</button>
