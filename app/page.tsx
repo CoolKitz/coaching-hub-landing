@@ -494,7 +494,6 @@ const TerminiServizioContent = () => (
 interface CookiePreferences {
   necessary: boolean
   analytics: boolean
-  marketing: boolean
 }
 
 interface CookieBannerProps {
@@ -688,7 +687,6 @@ export default function LandingPage() {
     const allAccepted: CookiePreferences = {
       necessary: true,
       analytics: true,
-      marketing: true
     }
     localStorage.setItem('cookiePreferences', JSON.stringify(allAccepted))
     setCookiePreferences(allAccepted)
@@ -699,7 +697,6 @@ export default function LandingPage() {
     const allRejected: CookiePreferences = {
       necessary: true, // Sempre attivi
       analytics: false,
-      marketing: false
     }
     localStorage.setItem('cookiePreferences', JSON.stringify(allRejected))
     setCookiePreferences(allRejected)
@@ -707,8 +704,12 @@ export default function LandingPage() {
   }
 
   const handleSaveCookiePreferences = (prefs: CookiePreferences) => {
-    localStorage.setItem('cookiePreferences', JSON.stringify(prefs))
-    setCookiePreferences(prefs)
+    const cleanedPrefs: CookiePreferences = {
+      necessary: true,
+      analytics: prefs.analytics
+    }
+    localStorage.setItem('cookiePreferences', JSON.stringify(cleanedPrefs))
+    setCookiePreferences(cleanedPrefs)
     setShowCookieBanner(false)
   }
 
