@@ -2,6 +2,7 @@
 
 import { Analytics } from '@vercel/analytics/react'
 import { useState, useEffect, FormEvent } from 'react'
+import type { ReactNode } from 'react'
 import Image from 'next/image'
 import { 
   Apple, MessageCircle, TrendingUp, Calendar, Trophy,
@@ -66,7 +67,7 @@ interface LegalModalProps {
   isOpen: boolean
   onClose: () => void
   title: string
-  children: React.ReactNode
+  children: ReactNode
 }
 
 const LegalModal = ({ isOpen, onClose, title, children }: LegalModalProps) => {
