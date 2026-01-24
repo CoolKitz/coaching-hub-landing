@@ -984,6 +984,23 @@ export default function LandingPage() {
               </motion.div>
             ))}
           </motion.div>
+
+          {/* Avviso importante post-acquisto */}
+          <motion.div initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeInUp} className="mt-12 max-w-3xl mx-auto">
+            <div className="card-glass p-6 rounded-2xl border border-amber-500/30 bg-amber-500/5">
+              <div className="flex items-start gap-4">
+                <div className="w-10 h-10 rounded-full bg-amber-500/20 flex items-center justify-center shrink-0">
+                  <span className="text-xl">⚠️</span>
+                </div>
+                <div>
+                  <h4 className="font-semibold text-amber-200 mb-2">Informazione importante sull&apos;attivazione</h4>
+                  <p className="text-white/70 text-sm leading-relaxed">
+                    Dopo l&apos;acquisto della licenza, per procedere con l&apos;attivazione completa della piattaforma è necessario contattare il nostro supporto tecnico all&apos;indirizzo <a href="mailto:coachinghubinfo@gmail.com" className="text-accent-lime hover:underline">coachinghubinfo@gmail.com</a>. Il nostro team si occuperà della configurazione dell&apos;ambiente tecnico (hosting, dominio, installazione) e della personalizzazione iniziale secondo le tue esigenze. L&apos;attivazione della licenza è subordinata al completamento di questa procedura di configurazione assistita, come previsto dalle <button type="button" onClick={() => setActiveModal('termini')} className="text-accent-lime hover:underline">Condizioni di Servizio</button>.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </motion.div>
           <motion.p initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeInUp} className="text-center text-white/50 text-sm mt-8">
             Tutti i prezzi sono IVA inclusa. Hai 14 giorni per provare il software. Se non soddisfa le tue aspettative, puoi richiedere il rimborso della licenza.
             Coaching Hub è un software in abbonamento. L’acquisto include una licenza d’uso del plugin e l’accesso alle funzionalità descritte.
