@@ -645,7 +645,19 @@ const CookieBanner = ({ onAcceptAll, onRejectAll, onSavePreferences, onOpenCooki
 // ============================================
 
 export default function LandingPage() {
-  const CHECKOUT_URL = 'https://test.maurovallotti.it'
+  // Lemon Squeezy Checkout URLs (un link per prodotto, il cliente sceglie la variante nel checkout)
+  const LS_CHECKOUT_URLS: Record<string, string> = {
+    starter: 'https://coaching-hub.lemonsqueezy.com/checkout/buy/eb9be287-c2d8-40e8-8049-5bfabf36c48d',
+    professional: 'https://coaching-hub.lemonsqueezy.com/checkout/buy/faad0c93-c231-47d3-b7cf-9be08600f935',
+    business: 'https://coaching-hub.lemonsqueezy.com/checkout/buy/3d21da71-5423-4b99-9be5-284a2d037cb4',
+    enterprise: 'https://coaching-hub.lemonsqueezy.com/checkout/buy/dc5aaa1a-5050-456e-9c94-90ec6a377016'
+  }
+  
+  const getCheckoutUrl = (planName: string) => {
+    const plan = planName.toLowerCase()
+    return LS_CHECKOUT_URLS[plan] || '#contatti'
+  }
+  
   const [billingAnnual, setBillingAnnual] = useState(true)
   const [openFaq, setOpenFaq] = useState<number | null>(null)
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
@@ -966,7 +978,7 @@ export default function LandingPage() {
                     </li>
                   ))}
                 </ul>
-                <a href={`${CHECKOUT_URL}/acquista/?plan=${plan.name.toLowerCase()}&billing=${billingAnnual ? 'annual' : 'monthly'}`} className={`block w-full text-center mt-auto ${plan.popular ? 'btn-primary' : 'btn-secondary'}`}>
+                <a href={getCheckoutUrl(plan.name)} className={`block w-full text-center mt-auto ${plan.popular ? 'btn-primary' : 'btn-secondary'}`}>
                   Attiva la licenza<br /> {plan.name}
                 </a>
               </motion.div>
