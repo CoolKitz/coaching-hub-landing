@@ -196,10 +196,27 @@ const PrivacyPolicyContent = () => (
       <h3 className="text-lg font-display font-bold text-white mb-3">7. Comunicazione e Diffusione dei Dati</h3>
       <p>I dati personali potranno essere comunicati a:</p>
       <ul className="list-disc list-inside mt-2 space-y-1">
-        <li>Fornitori di servizi tecnici e piattaforme di pagamento che agiscono come Responsabili del trattamento o Titolari autonomi, secondo quanto previsto dalle rispettive informative privacy</li>
+        <li><strong className="text-white">Lemon Squeezy (Merchant of Record):</strong> per la gestione dei pagamenti, della fatturazione e degli abbonamenti. Lemon Squeezy agisce come Merchant of Record e riceve i dati necessari all&apos;elaborazione dei pagamenti (nome, email, indirizzo di fatturazione, dati di pagamento). Per maggiori informazioni: <a href="https://www.lemonsqueezy.com/privacy" target="_blank" rel="noopener noreferrer" className="text-accent-lime hover:underline">Privacy Policy di Lemon Squeezy</a></li>
+        <li>Altri fornitori di servizi tecnici che agiscono come Responsabili del trattamento</li>
         <li>Autorità competenti, quando richiesto dalla legge</li>
       </ul>
       <p className="mt-2">I dati non saranno in alcun modo diffusi o ceduti a terzi per finalità di marketing senza il tuo esplicito consenso.</p>
+    </section>
+
+    <section>
+      <h3 className="text-lg font-display font-bold text-white mb-3">7bis. Lemon Squeezy come Merchant of Record</h3>
+      <p>I pagamenti per Coaching Hub sono gestiti da <strong className="text-white">Lemon Squeezy</strong>, che opera come Merchant of Record (MoR). Questo significa che:</p>
+      <ul className="list-disc list-inside mt-2 space-y-1">
+        <li>Lemon Squeezy è il venditore ufficiale ai fini fiscali e legali</li>
+        <li>Le fatture vengono emesse direttamente da Lemon Squeezy</li>
+        <li>I dati di pagamento (carta di credito, PayPal, ecc.) sono gestiti esclusivamente da Lemon Squeezy e non vengono mai condivisi con noi</li>
+        <li>Lemon Squeezy gestisce gli adempimenti fiscali relativi alla transazione (IVA, ecc.)</li>
+      </ul>
+      <p className="mt-2">Per informazioni complete sul trattamento dei dati da parte di Lemon Squeezy, consulta:</p>
+      <ul className="list-disc list-inside mt-2 space-y-1">
+        <li><a href="https://www.lemonsqueezy.com/privacy" target="_blank" rel="noopener noreferrer" className="text-accent-lime hover:underline">Privacy Policy di Lemon Squeezy</a></li>
+        <li><a href="https://www.lemonsqueezy.com/terms" target="_blank" rel="noopener noreferrer" className="text-accent-lime hover:underline">Termini di Servizio di Lemon Squeezy</a></li>
+      </ul>
     </section>
 
     <section>
@@ -282,7 +299,8 @@ const CookiePolicyContent = () => (
           <h4 className="font-bold text-white mb-2">3.3 Cookie di Terze Parti</h4>
           <p className="text-sm">Il sito potrebbe contenere collegamenti a servizi di terze parti che installano propri cookie:</p>
           <ul className="list-disc list-inside mt-2 text-sm space-y-1">
-            <li><strong className="text-white">Formspree:</strong> servizio di terze parti per la gestione del form di contatto, che potrebbe utilizzare cookie o tecnologie simili. Per maggiori informazioni, consulta l’informativa privacy del rispettivo fornitore.</li>
+            <li><strong className="text-white">Lemon Squeezy:</strong> piattaforma di pagamento che gestisce il checkout e gli abbonamenti. Durante il processo di pagamento, Lemon Squeezy potrebbe utilizzare cookie per garantire la sicurezza della transazione. Per maggiori informazioni: <a href="https://www.lemonsqueezy.com/privacy" target="_blank" rel="noopener noreferrer" className="text-accent-lime hover:underline">lemonsqueezy.com/privacy</a></li>
+            <li><strong className="text-white">Formspree:</strong> servizio di terze parti per la gestione del form di contatto.</li>
           </ul>
           <p className="text-xs text-white/50 mt-2">Per questi cookie, consulta le rispettive informative privacy.</p>
         </div>
@@ -376,20 +394,31 @@ const TerminiServizioContent = () => (
 
     <section>
       <h3 className="text-lg font-display font-bold text-white mb-3">5. Pagamento e Fatturazione</h3>
-      <ul className="list-disc list-inside space-y-1">
-        <li>Il pagamento dell’abbonamento avviene tramite piattaforme di pagamento esterne che agiscono come Merchant of Record, le quali gestiscono l’incasso, la fatturazione e gli adempimenti fiscali nei confronti dell’Utente.</li>
-        <li>L’abbonamento si rinnova automaticamente alla scadenza, salvo disdetta effettuata secondo le modalità indicate dalla piattaforma di pagamento utilizzata.</li>
-        <li>In caso di mancato pagamento, l’accesso alla licenza potrà essere sospeso o revocato.</li>
+      <p>I pagamenti sono gestiti da <strong className="text-white">Lemon Squeezy</strong>, che opera come Merchant of Record (MoR):</p>
+      <ul className="list-disc list-inside space-y-1 mt-2">
+        <li><strong className="text-white">Merchant of Record:</strong> Lemon Squeezy è il venditore ufficiale della licenza ai fini legali e fiscali</li>
+        <li><strong className="text-white">Fatturazione:</strong> Le fatture/ricevute vengono emesse direttamente da Lemon Squeezy, non da Coaching Hub</li>
+        <li><strong className="text-white">Metodi di pagamento:</strong> Carta di credito, PayPal e altri metodi supportati da Lemon Squeezy</li>
+        <li><strong className="text-white">IVA:</strong> L&apos;IVA viene gestita automaticamente da Lemon Squeezy in base alla tua posizione geografica</li>
+        <li><strong className="text-white">Rinnovo automatico:</strong> L&apos;abbonamento si rinnova automaticamente alla scadenza, salvo disdetta</li>
+        <li><strong className="text-white">Disdetta:</strong> Puoi annullare l&apos;abbonamento in qualsiasi momento dal tuo account Lemon Squeezy o contattando il supporto</li>
       </ul>
+      <p className="mt-3">In caso di mancato pagamento, l&apos;accesso alla licenza potrà essere sospeso o revocato.</p>
+      <p className="mt-2">Per i termini completi relativi ai pagamenti, consulta i <a href="https://www.lemonsqueezy.com/terms" target="_blank" rel="noopener noreferrer" className="text-accent-lime hover:underline">Termini di Servizio di Lemon Squeezy</a>.</p>
     </section>
 
     <section>
+    <section>
       <h3 className="text-lg font-display font-bold text-white mb-3">6. Diritto di Recesso e Rimborsi</h3>
       <p>Ai sensi del Codice del Consumo (D.Lgs. 206/2005), l&apos;Utente consumatore ha diritto di recedere dal contratto entro 14 giorni dall&apos;acquisto, senza dover fornire alcuna motivazione.</p>
-      <p className="mt-2">Il diritto di recesso e le eventuali richieste di rimborso sono gestite tramite la piattaforma di pagamento utilizzata per l’acquisto, secondo le relative condizioni.</p>
-      <p className="mt-2"><strong className="text-white">Garanzia soddisfatto o rimborsato:</strong> Oltre al diritto di recesso previsto dalla legge, è offerta una garanzia soddisfatto o rimborsato di 14 giorni dalla data di acquisto della licenza.</p>
+      <p className="mt-2"><strong className="text-white">Come richiedere un rimborso:</strong></p>
+      <ul className="list-disc list-inside mt-2 space-y-1">
+        <li>I rimborsi vengono gestiti da <strong className="text-white">Lemon Squeezy</strong> in quanto Merchant of Record</li>
+        <li>Puoi richiedere un rimborso contattando <a href="mailto:coachinghubinfo@gmail.com" className="text-accent-lime hover:underline">coachinghubinfo@gmail.com</a></li>
+        <li>Il rimborso verrà elaborato tramite Lemon Squeezy sullo stesso metodo di pagamento utilizzato</li>
+      </ul>
+      <p className="mt-3"><strong className="text-white">Garanzia soddisfatto o rimborsato:</strong> Oltre al diritto di recesso previsto dalla legge, offriamo una garanzia soddisfatto o rimborsato di 14 giorni dalla data di acquisto della licenza. Se il software non soddisfa le tue esigenze, richiedi il rimborso completo entro questo periodo.</p>
     </section>
-
     <section>
       <h3 className="text-lg font-display font-bold text-white mb-3">7. Upgrade e Downgrade</h3>
       <ul className="list-disc list-inside space-y-1">
