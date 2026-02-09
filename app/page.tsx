@@ -900,10 +900,10 @@ export default function LandingPage() {
       {/* Why Choose Us */}
       <section className="relative section-padding">
         <div className="container-custom">
+          <motion.h2 initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeInUp} className="font-display text-3xl md:text-4xl lg:text-5xl font-bold mb-12 text-center lg:text-left">Perché scegliere <span className="text-gradient">Coaching Hub?</span></motion.h2>
           <motion.div initial="hidden" whileInView="visible" viewport={{ once: true }} variants={staggerContainer} className="grid lg:grid-cols-2 gap-16 items-center">
             <motion.div variants={fadeInUp}>
-              <h2 className="font-display text-3xl md:text-4xl lg:text-5xl font-bold mb-6">Perché scegliere <span className="text-gradient">Coaching Hub?</span></h2>
-              <div className="space-y-6 mt-8">
+              <div className="space-y-6">
                 {[
                   { icon: Zap, title: 'Semplicissimo da usare', description: 'Interfaccia intuitiva pensata per chi non è un tecnico. Se sai usare lo smartphone, sai usare Coaching Hub.' },
                   { icon: Shield, title: 'I tuoi dati sono al sicuro', description: 'Il plugin si installa sul TUO sito WordPress. I dati dei tuoi clienti restano tuoi, sempre.' },
@@ -918,7 +918,7 @@ export default function LandingPage() {
                 ))}
               </div>
             </motion.div>
-            <motion.div variants={fadeInUp} className="relative">
+            <motion.div variants={fadeInUp} className="relative self-center">
               <div className="absolute -inset-4 bg-gradient-to-r from-accent-lime/10 to-brand-500/10 blur-3xl rounded-3xl" />
               <div className="relative card-glass p-8 rounded-3xl">
                 <div className="text-center">
