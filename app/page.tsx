@@ -908,7 +908,8 @@ export default function LandingPage() {
                   { icon: Zap, title: 'Semplicissimo da usare', description: 'Interfaccia intuitiva pensata per chi non è un tecnico. Se sai usare lo smartphone, sai usare Coaching Hub.' },
                   { icon: Shield, title: 'I tuoi dati sono al sicuro', description: 'Il plugin si installa sul TUO sito WordPress. I dati dei tuoi clienti restano tuoi, sempre.' },
                   { icon: Clock, title: 'Risparmia 10+ ore a settimana', description: 'Automatizza le attività ripetitive e dedica più tempo a quello che conta: i tuoi clienti.' },
-                  { icon: Palette, title: 'Personalizzabile', description: 'Adatta colori, logo e funzionalità al tuo brand. I piani avanzati offrono anche white label completo.' }
+                  { icon: Palette, title: 'Personalizzabile', description: 'Adatta colori, logo e funzionalità al tuo brand. I piani avanzati offrono anche white label completo.' },
+                  { icon: User, title: 'La tua vetrina professionale', description: 'Il sistema genera automaticamente una landing page pubblica con il tuo nome, logo e servizi. Condividila per attrarre nuovi clienti senza creare un sito da zero.' }
                 ].map((item, i) => (
                   <div key={i} className="flex gap-4">
                     <div className="w-12 h-12 rounded-xl bg-brand-500/20 flex items-center justify-center shrink-0"><item.icon className="w-6 h-6 text-brand-400" /></div>
