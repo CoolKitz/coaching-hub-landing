@@ -49,12 +49,19 @@ const features: Feature[] = [
 ]
 
 const faqs = [
-  { q: 'Ho bisogno di competenze tecniche per usarlo?', a: "Coaching Hub è progettato per essere semplice e intuitivo. L’installazione e l’attivazione sono guidate passo-passo tramite istruzioni e supporto tecnico dedicato, così puoi iniziare rapidamente anche senza competenze tecniche." },
+  { q: 'Ho bisogno di competenze tecniche per usarlo?', a: "Coaching Hub è progettato per essere semplice e intuitivo. L'installazione e l'attivazione sono guidate passo-passo tramite istruzioni e supporto tecnico dedicato, così puoi iniziare rapidamente anche senza competenze tecniche." },
   { q: 'Funziona su telefono?', a: "Sì! I tuoi clienti possono accedere da qualsiasi dispositivo: telefono, tablet o computer." },
   { q: 'I miei clienti devono scaricare un\'app?', a: "No, non serve scaricare nulla. Accedono direttamente dal browser del telefono." },
-  { q: 'Posso provarlo prima di comprare?', a: "Certo! Hai 14 giorni per provare Coaching Hub. Se il software non soddisfa le tue esigenze, puoi richiedere il rimborso completo della licenza entro questo periodo." },
+  { q: 'Posso provarlo prima di comprare?', a: "Certo! I primi 14 giorni sono completamente gratuiti. Il pagamento viene addebitato solo a partire dal 15° giorno, quindi hai tutto il tempo per esplorare le funzionalità e decidere se Coaching Hub fa per te. Se non ti convince, puoi annullare senza alcun costo." },
   { q: 'Posso passare a un piano superiore in seguito?', a: "Sì, puoi fare upgrade in qualsiasi momento. Paghi solo la differenza proporzionale al tempo rimanente." },
-  { q: 'Come funziona il supporto?', a: "Il supporto è disponibile via email con risposta entro 24 ore lavorative ed è dedicato all’utilizzo del software, alla gestione della licenza e alle funzionalità incluse. I piani Business ed Enterprise includono supporto prioritario." }
+  { q: 'Cosa è incluso nel prezzo della licenza?', a: "La licenza include l'accesso completo al software Coaching Hub secondo il piano scelto, tutti gli aggiornamenti futuri e il supporto tecnico via email. Il nostro team si occuperà anche dell'installazione e della configurazione iniziale della piattaforma." },
+  { q: 'Ci sono costi aggiuntivi oltre alla licenza?', a: "Sì, alcuni costi infrastrutturali sono a carico del cliente: hosting web (indicativamente €50–150/anno a seconda del traffico), dominio personalizzato (es. tuonome.it, circa €10–15/anno) e certificato SSL (spesso già incluso nell'hosting, altrimenti €20–50/anno). Durante la fase di configurazione ti guideremo nella scelta delle soluzioni più adatte alle tue esigenze e al tuo budget." },
+  { q: 'Chi si occupa dell\'installazione?', a: "Pensiamo a tutto noi! Dopo l'acquisto verrai contattato dal nostro team, che si occuperà di configurare l'intera piattaforma sul tuo hosting. Tu dovrai solo scegliere hosting e dominio — e ti aiutiamo anche in questo." },
+  { q: 'Posso usare un hosting che ho già?', a: "Certamente! Se hai già un hosting WordPress compatibile (PHP 7.4+, MySQL 5.7+), possiamo installare Coaching Hub direttamente lì senza costi aggiuntivi di infrastruttura." },
+  { q: 'Posso migrare da un altro tool?', a: "Sì! Se attualmente utilizzi fogli Excel, Google Sheets, altri software o app per gestire i tuoi clienti, il nostro team ti aiuterà a importare i dati esistenti durante la fase di configurazione, così non perderai nulla nel passaggio a Coaching Hub." },
+  { q: 'Quanto tempo richiede l\'attivazione?', a: "Generalmente completiamo la configurazione entro 24–48 ore lavorative dal momento in cui riceviamo tutti i dati necessari (accesso hosting e dominio configurato)." },
+  { q: 'I dati dei miei clienti sono al sicuro?', a: "Assolutamente sì. Coaching Hub si installa direttamente sul tuo sito WordPress, quindi i dati dei tuoi clienti restano sul tuo server, sotto il tuo pieno controllo. Non transitano mai su piattaforme terze. Il software è conforme al GDPR." },
+  { q: 'Come funziona il supporto?', a: "Il supporto è disponibile via email con risposta entro 24 ore lavorative ed è dedicato all'utilizzo del software, alla gestione della licenza e alle funzionalità incluse. I piani Business ed Enterprise includono supporto prioritario." }
 ]
 
 // ============================================
@@ -288,7 +295,7 @@ const CookiePolicyContent = () => (
           <ul className="list-disc list-inside mt-2 text-sm space-y-1">
             <li>Vercel Analytics (se attivato): analisi delle performance</li>
           </ul>
-          <p className="text-xs text-white/50 mt-2">Base giuridica: consenso dell’utente (Art. 6.1.a GDPR), espresso tramite il banner cookie</p>
+          <p className="text-xs text-white/50 mt-2">Base giuridica: consenso dell'utente (Art. 6.1.a GDPR), espresso tramite il banner cookie</p>
         </div>
 
         <div className="p-4 bg-white/5 rounded-xl">
@@ -362,7 +369,7 @@ const TerminiServizioContent = () => (
       <h3 className="text-lg font-display font-bold text-white mb-3">2. Oggetto del Contratto</h3>
       <p>I presenti Termini di Servizio regolano l&apos;utilizzo della piattaforma Coaching Hub. Con l&apos;acquisto di una licenza, l&apos;Utente accetta integralmente i presenti termini.</p>
       <p className="mt-2">Coaching Hub è un software gestionale che permette a personal trainer, nutrizionisti e coach di gestire i propri clienti attraverso funzionalità quali: schede allenamento, piani alimentari, messaggistica, tracciamento progressi e calendario appuntamenti.</p>
-      <p className="mt-2">Coaching Hub è fornito esclusivamente come <strong>licenza software</strong>. Eventuali attività di supporto sono accessorie e limitate all’utilizzo del software e non costituiscono prestazioni di servizi professionali.</p>
+      <p className="mt-2">Coaching Hub è fornito esclusivamente come <strong>licenza software</strong>. Eventuali attività di supporto sono accessorie e limitate all'utilizzo del software e non costituiscono prestazioni di servizi professionali.</p>
     </section>
 
     <section>
@@ -373,7 +380,7 @@ const TerminiServizioContent = () => (
         <li>Connessione internet attiva</li>
         <li>Browser web aggiornato</li>
       </ul>
-      <p className="mt-2">Il Titolare del software fornisce supporto tecnico limitato all’attivazione e all’utilizzo del software, ma non è responsabile per problemi derivanti da hosting inadeguati o configurazioni errate del server.</p>
+      <p className="mt-2">Il Titolare del software fornisce supporto tecnico limitato all'attivazione e all'utilizzo del software, ma non è responsabile per problemi derivanti da hosting inadeguati o configurazioni errate del server.</p>
     </section>
 
     <section>
@@ -404,8 +411,8 @@ const TerminiServizioContent = () => (
     <section>
       <h3 className="text-lg font-display font-bold text-white mb-3">6. Diritto di Recesso e Rimborsi</h3>
       <p>Ai sensi del Codice del Consumo (D.Lgs. 206/2005), l&apos;Utente ha diritto di recedere entro 14 giorni dall&apos;acquisto.</p>
+      <p className="mt-2"><strong className="text-white">Periodo di prova gratuito:</strong> I primi 14 giorni dall&apos;attivazione sono completamente gratuiti. Il pagamento viene addebitato automaticamente a partire dal 15° giorno. L&apos;Utente può annullare in qualsiasi momento durante il periodo di prova senza alcun addebito.</p>
       <p className="mt-2"><strong className="text-white">Come richiedere un rimborso:</strong> I rimborsi sono gestiti da Lemon Squeezy. Contatta <a href="mailto:coachinghubinfo@gmail.com" className="text-accent-lime hover:underline">coachinghubinfo@gmail.com</a> e il rimborso verrà elaborato sullo stesso metodo di pagamento.</p>
-      <p className="mt-2"><strong className="text-white">Garanzia 14 giorni:</strong> Offriamo una garanzia soddisfatto o rimborsato di 14 giorni dalla data di acquisto.</p>
     </section>
 
     <section>
@@ -526,12 +533,12 @@ interface CookieBannerProps {
 const CookieBanner = ({ onAcceptAll, onRejectAll, onSavePreferences, onOpenCookiePolicy }: CookieBannerProps) => {
   const [showDetails, setShowDetails] = useState(false)
   const [preferences, setPreferences] = useState<CookiePreferences>({
-    necessary: true, // Sempre attivi
+    necessary: true,
     analytics: false,
   })
 
   const handleToggle = (key: keyof CookiePreferences) => {
-    if (key === 'necessary') return // Non può essere disattivato
+    if (key === 'necessary') return
     setPreferences(prev => ({ ...prev, [key]: !prev[key] }))
   }
 
@@ -543,7 +550,6 @@ const CookieBanner = ({ onAcceptAll, onRejectAll, onSavePreferences, onOpenCooki
       className="fixed bottom-0 left-0 right-0 z-[99] p-4 md:p-6"
     >
       <div className="max-w-4xl mx-auto card-glass rounded-2xl md:rounded-3xl overflow-hidden border border-white/10 shadow-2xl">
-        {/* Header */}
         <div className="p-4 md:p-6">
           <div className="flex items-start gap-4">
             <div className="w-12 h-12 rounded-xl bg-accent-lime/20 flex items-center justify-center shrink-0">
@@ -564,7 +570,6 @@ const CookieBanner = ({ onAcceptAll, onRejectAll, onSavePreferences, onOpenCooki
             </div>
           </div>
 
-          {/* Dettagli Cookie (espandibile) */}
           <AnimatePresence>
             {showDetails && (
               <motion.div
@@ -574,7 +579,6 @@ const CookieBanner = ({ onAcceptAll, onRejectAll, onSavePreferences, onOpenCooki
                 className="overflow-hidden"
               >
                 <div className="mt-6 space-y-4">
-                  {/* Cookie Necessari */}
                   <div className="flex items-center justify-between p-4 bg-white/5 rounded-xl">
                     <div className="flex-1 pr-4">
                       <div className="flex items-center gap-2 mb-1">
@@ -590,7 +594,6 @@ const CookieBanner = ({ onAcceptAll, onRejectAll, onSavePreferences, onOpenCooki
                     </div>
                   </div>
 
-                  {/* Cookie Analitici */}
                   <div className="flex items-center justify-between p-4 bg-white/5 rounded-xl">
                     <div className="flex-1 pr-4">
                       <h4 className="font-semibold text-sm mb-1">Cookie Analitici</h4>
@@ -605,14 +608,12 @@ const CookieBanner = ({ onAcceptAll, onRejectAll, onSavePreferences, onOpenCooki
                       <div className={`w-4 h-4 rounded-full transition-all ${preferences.analytics ? 'bg-accent-lime translate-x-6' : 'bg-white/40 translate-x-0'}`} />
                     </button>
                   </div>
-
                 </div>
               </motion.div>
             )}
           </AnimatePresence>
         </div>
 
-        {/* Footer con pulsanti */}
         <div className="p-4 md:p-6 pt-0 flex flex-col sm:flex-row gap-3">
           {showDetails ? (
             <>
@@ -663,7 +664,6 @@ const CookieBanner = ({ onAcceptAll, onRejectAll, onSavePreferences, onOpenCooki
 // ============================================
 
 export default function LandingPage() {
-  // Lemon Squeezy Checkout URLs (un link per prodotto, il cliente sceglie la variante nel checkout)
   const LS_CHECKOUT_URLS: Record<string, string> = {
     starter: 'https://coaching-hub.lemonsqueezy.com/checkout/buy/eb9be287-c2d8-40e8-8049-5bfabf36c48d',
     professional: 'https://coaching-hub.lemonsqueezy.com/checkout/buy/faad0c93-c231-47d3-b7cf-9be08600f935',
@@ -682,48 +682,36 @@ export default function LandingPage() {
   const [formStatus, setFormStatus] = useState<'idle' | 'sending' | 'sent' | 'error'>('idle')
   const [activeModal, setActiveModal] = useState<ModalType>(null)
   
-  // Cookie Banner State
   const [showCookieBanner, setShowCookieBanner] = useState(false)
   const [cookiePreferences, setCookiePreferences] = useState<CookiePreferences | null>(null)
 
-  // Controlla se l'utente ha già accettato/rifiutato i cookie
   useEffect(() => {
     const savedPreferences = localStorage.getItem('cookiePreferences')
     if (savedPreferences) {
       setCookiePreferences(JSON.parse(savedPreferences))
       setShowCookieBanner(false)
     } else {
-      // Mostra il banner dopo un breve delay per UX migliore
       const timer = setTimeout(() => setShowCookieBanner(true), 1000)
       return () => clearTimeout(timer)
     }
   }, [])
 
   const handleAcceptAllCookies = () => {
-    const allAccepted: CookiePreferences = {
-      necessary: true,
-      analytics: true,
-    }
+    const allAccepted: CookiePreferences = { necessary: true, analytics: true }
     localStorage.setItem('cookiePreferences', JSON.stringify(allAccepted))
     setCookiePreferences(allAccepted)
     setShowCookieBanner(false)
   }
 
   const handleRejectAllCookies = () => {
-    const allRejected: CookiePreferences = {
-      necessary: true, // Sempre attivi
-      analytics: false,
-    }
+    const allRejected: CookiePreferences = { necessary: true, analytics: false }
     localStorage.setItem('cookiePreferences', JSON.stringify(allRejected))
     setCookiePreferences(allRejected)
     setShowCookieBanner(false)
   }
 
   const handleSaveCookiePreferences = (prefs: CookiePreferences) => {
-    const cleanedPrefs: CookiePreferences = {
-      necessary: true,
-      analytics: prefs.analytics
-    }
+    const cleanedPrefs: CookiePreferences = { necessary: true, analytics: prefs.analytics }
     localStorage.setItem('cookiePreferences', JSON.stringify(cleanedPrefs))
     setCookiePreferences(cleanedPrefs)
     setShowCookieBanner(false)
@@ -759,29 +747,9 @@ export default function LandingPage() {
       <div className="fixed inset-0 noise-overlay pointer-events-none" />
 
       {/* Modal Legali */}
-      <LegalModal
-        isOpen={activeModal === 'privacy'}
-        onClose={() => setActiveModal(null)}
-        title="Privacy Policy"
-      >
-        <PrivacyPolicyContent />
-      </LegalModal>
-
-      <LegalModal
-        isOpen={activeModal === 'cookie'}
-        onClose={() => setActiveModal(null)}
-        title="Cookie Policy"
-      >
-        <CookiePolicyContent />
-      </LegalModal>
-
-      <LegalModal
-        isOpen={activeModal === 'termini'}
-        onClose={() => setActiveModal(null)}
-        title="Termini di Servizio"
-      >
-        <TerminiServizioContent />
-      </LegalModal>
+      <LegalModal isOpen={activeModal === 'privacy'} onClose={() => setActiveModal(null)} title="Privacy Policy"><PrivacyPolicyContent /></LegalModal>
+      <LegalModal isOpen={activeModal === 'cookie'} onClose={() => setActiveModal(null)} title="Cookie Policy"><CookiePolicyContent /></LegalModal>
+      <LegalModal isOpen={activeModal === 'termini'} onClose={() => setActiveModal(null)} title="Termini di Servizio"><TerminiServizioContent /></LegalModal>
 
       {/* Cookie Banner */}
       <AnimatePresence>
@@ -790,9 +758,7 @@ export default function LandingPage() {
             onAcceptAll={handleAcceptAllCookies}
             onRejectAll={handleRejectAllCookies}
             onSavePreferences={handleSaveCookiePreferences}
-            onOpenCookiePolicy={() => {
-              setActiveModal('cookie')
-            }}
+            onOpenCookiePolicy={() => { setActiveModal('cookie') }}
           />
         )}
       </AnimatePresence>
@@ -996,15 +962,30 @@ export default function LandingPage() {
                     </li>
                   ))}
                 </ul>
+                <div className="flex items-center justify-center gap-2 mb-4 py-2 px-3 rounded-full bg-emerald-500/10 border border-emerald-500/20">
+                  <Shield className="w-4 h-4 text-emerald-400 shrink-0" />
+                  <span className="text-xs text-emerald-300 font-medium">14 giorni gratis — paghi solo dal 15° giorno</span>
+                </div>
                 <a href={getCheckoutUrl(plan.name)} className={`block w-full text-center mt-auto ${plan.popular ? 'btn-primary' : 'btn-secondary'}`}>
-                  Attiva la licenza<br /> {plan.name}
+                  Prova gratis 14 giorni<br /> {plan.name}
                 </a>
               </motion.div>
             ))}
           </motion.div>
 
+          {/* Nota costi licenza */}
+          <motion.div initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeInUp} className="mt-8">
+            <div className="card-glass p-5 rounded-2xl border border-amber-500/20 bg-amber-500/5 text-center max-w-3xl mx-auto">
+              <p className="text-sm text-amber-200/80">
+                <strong className="text-amber-200">💡 Nota:</strong> I prezzi indicati si riferiscono esclusivamente alla licenza software. 
+                Hosting, dominio e servizi esterni sono a carico del cliente. 
+                <a href="#faq" className="text-accent-lime hover:underline ml-1">Maggiori info nelle FAQ</a>
+              </p>
+            </div>
+          </motion.div>
+
           {/* Avviso importante post-acquisto */}
-          <motion.div initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeInUp} className="mt-12 max-w-3xl mx-auto">
+          <motion.div initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeInUp} className="mt-6 max-w-3xl mx-auto">
             <div className="card-glass p-6 rounded-2xl border border-amber-500/30 bg-amber-500/5">
               <div className="flex items-start gap-4">
                 <div className="w-10 h-10 rounded-full bg-amber-500/20 flex items-center justify-center shrink-0">
@@ -1020,9 +1001,9 @@ export default function LandingPage() {
             </div>
           </motion.div>
           <motion.p initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeInUp} className="text-center text-white/50 text-sm mt-8">
-            Tutti i prezzi sono IVA inclusa. Hai 14 giorni per provare il software. Se non soddisfa le tue aspettative, puoi richiedere il rimborso della licenza.
-            Coaching Hub è un software in abbonamento. L’acquisto include una licenza d’uso del plugin e l’accesso alle funzionalità descritte.
-            Eventuale supporto fornito è limitato all’attivazione e all’utilizzo del software e non costituisce prestazione di servizi professionali personalizzati.
+            Tutti i prezzi sono IVA inclusa. I primi 14 giorni sono gratuiti: il pagamento viene addebitato solo a partire dal 15° giorno. Se non soddisfa le tue aspettative, puoi annullare senza alcun costo.
+            Coaching Hub è un software in abbonamento. L'acquisto include una licenza d'uso del plugin e l'accesso alle funzionalità descritte.
+            Eventuale supporto fornito è limitato all'attivazione e all'utilizzo del software e non costituisce prestazione di servizi professionali personalizzati.
           </motion.p>
         </div>
       </section>
@@ -1099,8 +1080,8 @@ export default function LandingPage() {
               <motion.a variants={fadeInUp} href="#prezzi" className="btn-primary inline-flex">Scegli il tuo piano <ArrowRight className="w-5 h-5 ml-2" /></motion.a>
               <motion.div variants={fadeInUp} className="flex flex-wrap items-center justify-center gap-6 mt-8 text-sm text-white/60">
                 <div className="flex items-center gap-2"><Check className="w-4 h-4 text-accent-lime" /><span>Supporto alla configurazione di base del software</span></div>
-                <div className="flex items-center gap-2"><Check className="w-4 h-4 text-accent-lime" /><span>14 giorni per provare il software</span></div>
-                <div className="flex items-center gap-2"><Check className="w-4 h-4 text-accent-lime" /><span>Supporto tecnico per l’attivazione della licenza</span></div>
+                <div className="flex items-center gap-2"><Check className="w-4 h-4 text-accent-lime" /><span>14 giorni gratis, paghi dal 15° giorno</span></div>
+                <div className="flex items-center gap-2"><Check className="w-4 h-4 text-accent-lime" /><span>Supporto tecnico per l'attivazione della licenza</span></div>
               </motion.div>
             </div>
           </motion.div>
@@ -1120,7 +1101,7 @@ export default function LandingPage() {
           </div>
           <div className="mt-12 pt-8 border-t border-white/5 flex flex-col md:flex-row items-center justify-between gap-4 text-sm text-white/40">
             <p>© 2026 Coaching Hub - Mauro Vallotti. Tutti i diritti riservati.<br />
-            Coaching Hub è un software in abbonamento. Il supporto fornito riguarda<br/> esclusivamente l’utilizzo del sistema e delle funzionalità incluse nella licenza.</p>
+            Coaching Hub è un software in abbonamento. Il supporto fornito riguarda<br/> esclusivamente l'utilizzo del sistema e delle funzionalità incluse nella licenza.</p>
             <div className="flex gap-6">
               <button onClick={() => setActiveModal('privacy')} className="hover:text-white transition-colors">Privacy Policy</button>
               <button onClick={() => setActiveModal('cookie')} className="hover:text-white transition-colors">Cookie Policy</button>
@@ -1133,7 +1114,7 @@ export default function LandingPage() {
           </div>
         </div>
       </footer>
-      {/* Analytics condizionale - DEVE ESSERE QUI */}
+      {/* Analytics condizionale */}
       {cookiePreferences?.analytics === true && <Analytics />}
     </div>
   )
