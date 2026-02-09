@@ -61,6 +61,7 @@ const faqs = [
   { q: 'Posso migrare da un altro tool?', a: "Sì! Se attualmente utilizzi fogli Excel, Google Sheets, altri software o app per gestire i tuoi clienti, il nostro team ti aiuterà a importare i dati esistenti durante la fase di configurazione, così non perderai nulla nel passaggio a Coaching Hub." },
   { q: 'Quanto tempo richiede l\'attivazione?', a: "Generalmente completiamo la configurazione entro 24–48 ore lavorative dal momento in cui riceviamo tutti i dati necessari (accesso hosting e dominio configurato)." },
   { q: 'I dati dei miei clienti sono al sicuro?', a: "Assolutamente sì. Coaching Hub si installa direttamente sul tuo sito WordPress, quindi i dati dei tuoi clienti restano sul tuo server, sotto il tuo pieno controllo. Non transitano mai su piattaforme terze. Il software è conforme al GDPR." },
+  { q: 'Cosa significa "Landing page generata dal sistema"?', a: "Ogni coach riceve automaticamente una pagina pubblica personalizzata con il proprio nome, logo e servizi offerti. È una vetrina professionale già pronta che puoi condividere con i potenziali clienti per presentarti e ricevere nuove richieste, senza dover creare un sito separato." },
   { q: 'Come funziona il supporto?', a: "Il supporto è disponibile via email con risposta entro 24 ore lavorative ed è dedicato all'utilizzo del software, alla gestione della licenza e alle funzionalità incluse. I piani Business ed Enterprise includono supporto prioritario." }
 ]
 
