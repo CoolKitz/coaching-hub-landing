@@ -1,0 +1,53 @@
+# Coaching Hub
+
+> La piattaforma tutto-in-uno per Personal Trainer e Coach Online
+
+Coaching Hub è un plugin WordPress che permette a personal trainer, nutrizionisti e coach di gestire i propri clienti in un'unica piattaforma professionale, installata direttamente sul proprio sito.
+
+## Funzionalità principali
+
+- **Schede Allenamento**: builder drag & drop per creare programmi personalizzati con esercizi, serie, ripetizioni e note
+- **Piani Alimentari**: costruttore di piani giornalieri con database USDA integrato, calcolo automatico di kcal e macronutrienti
+- **Messaggistica Privata**: chat integrata tra coach e clienti con notifiche in tempo reale
+- **Tracciamento Progressi**: peso, misure corporee, foto, check-in settimanali con grafici automatici e calcolo body fat (Jackson-Pollock)
+- **Calendario Appuntamenti**: sistema di prenotazione integrato con sincronizzazione Google Calendar
+- **Gamification**: punti, badge e classifiche per motivare i clienti
+- **Landing Page Automatica**: ogni coach riceve una pagina pubblica personalizzata per presentarsi e ricevere nuovi clienti
+- **Questionario Cliente**: raccolta dati strutturata con calcolo BMI automatico
+- **Personalizzazione Tema**: colori, logo, font e stile adattabili al brand del coach
+
+## Piani disponibili
+
+- **Starter** (€9.90/mese o €99/anno): fino a 10 clienti
+- **Professional** (€19.90/mese o €199/anno): fino a 50 clienti, check-in, progressi, gamification
+- **Business** (€34.90/mese o €349/anno): fino a 200 clienti, multi-coach, report avanzati, white label base
+- **Enterprise** (€59.90/mese o €599/anno): clienti e coach illimitati, white label completo, accesso API
+
+Tutti i piani includono 14 giorni di prova gratuita. Il pagamento viene addebitato dal 15° giorno.
+
+## Requisiti tecnici
+
+- Sito WordPress con hosting compatibile (PHP 7.4+, MySQL 5.7+)
+- Connessione internet attiva
+- Browser web aggiornato
+
+L'installazione e la configurazione sono gestite dal team Coaching Hub dopo l'acquisto.
+
+## Pagamenti
+
+I pagamenti sono gestiti da Lemon Squeezy come Merchant of Record. Le fatture vengono emesse da Lemon Squeezy con IVA gestita automaticamente.
+
+## Contatti
+
+- Email: coachinghubinfo@gmail.com
+- Sede: Torino, Italia
+- Sito: https://coachinghub.it
+
+## Link utili
+
+- [Prezzi](https://coachinghub.it/#prezzi)
+- [Funzionalità](https://coachinghub.it/#funzionalita)
+- [FAQ](https://coachinghub.it/#faq)
+- [Contatti](https://coachinghub.it/#contatti)
+- [Privacy Policy](https://coachinghub.it/#) (disponibile in pagina)
+- [Termini di Servizio](https://coachinghub.it/#) (disponibile in pagina)
