@@ -217,7 +217,7 @@ const PrivacyPolicyContent = () => (
       <ul className="list-disc list-inside mt-2 space-y-1">
         <li>Lemon Squeezy è il venditore ufficiale ai fini fiscali e legali</li>
         <li>Le fatture vengono emesse direttamente da Lemon Squeezy</li>
-        <li>I dati di pagamento (carta di credito, PayPal, ecc.) sono gestiti esclusivamente da Lemon Squeezy</li>
+        <li>I dati di pagamento (carta di credito, ecc.) sono gestiti esclusivamente da Lemon Squeezy</li>
         <li>Lemon Squeezy gestisce gli adempimenti fiscali (IVA, ecc.)</li>
       </ul>
       <p className="mt-2">Per informazioni complete: <a href="https://www.lemonsqueezy.com/privacy" target="_blank" rel="noopener noreferrer" className="text-accent-lime hover:underline">Privacy</a> | <a href="https://www.lemonsqueezy.com/terms" target="_blank" rel="noopener noreferrer" className="text-accent-lime hover:underline">Termini</a> di Lemon Squeezy</p>
@@ -410,10 +410,10 @@ const TerminiServizioContent = () => (
     </section>
 
     <section>
-      <h3 className="text-lg font-display font-bold text-white mb-3">6. Diritto di Recesso e Rimborsi</h3>
-      <p>Ai sensi del Codice del Consumo (D.Lgs. 206/2005), l&apos;Utente ha diritto di recedere entro 14 giorni dall&apos;acquisto.</p>
-      <p className="mt-2"><strong className="text-white">Periodo di prova gratuito:</strong> I primi 14 giorni dall&apos;attivazione sono completamente gratuiti. Il pagamento viene addebitato automaticamente a partire dal 15° giorno. L&apos;Utente può annullare in qualsiasi momento durante il periodo di prova senza alcun addebito.</p>
-      <p className="mt-2"><strong className="text-white">Come richiedere un rimborso:</strong> I rimborsi sono gestiti da Lemon Squeezy. Contatta <a href="mailto:coachinghubinfo@gmail.com" className="text-accent-lime hover:underline">coachinghubinfo@gmail.com</a> e il rimborso verrà elaborato sullo stesso metodo di pagamento.</p>
+      <h3 className="text-lg font-display font-bold text-white mb-3">6. Periodo di Prova, Recesso e Rimborsi</h3>
+      <p><strong className="text-white">Periodo di prova gratuito:</strong> I primi 14 giorni dall&apos;attivazione sono completamente gratuiti. Il pagamento viene addebitato automaticamente a partire dal 15° giorno. L&apos;Utente può annullare in qualsiasi momento durante il periodo di prova senza alcun addebito.</p>
+      <p className="mt-2"><strong className="text-white">Diritto di recesso:</strong> Ai sensi del Codice del Consumo (D.Lgs. 206/2005), l&apos;Utente consumatore ha diritto di recedere entro 14 giorni dal primo addebito effettivo (ovvero dal 15° giorno dall&apos;attivazione).</p>
+      <p className="mt-2"><strong className="text-white">Come richiedere un rimborso:</strong> I rimborsi successivi al periodo di prova sono gestiti da Lemon Squeezy. Contatta <a href="mailto:coachinghubinfo@gmail.com" className="text-accent-lime hover:underline">coachinghubinfo@gmail.com</a> e il rimborso verrà elaborato sullo stesso metodo di pagamento.</p>
     </section>
 
     <section>
