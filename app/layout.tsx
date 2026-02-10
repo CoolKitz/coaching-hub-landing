@@ -18,6 +18,32 @@ export const metadata: Metadata = {
   title: 'Coaching Hub - Piattaforma per Personal Trainer e Coach Online',
   description: 'Gestisci clienti, schede allenamento e piani alimentari in un\'unica piattaforma. Pensata per personal trainer e coach online.',
   keywords: 'personal trainer software, app per coach, gestione clienti fitness, schede allenamento online, piani alimentari digitali',
+  openGraph: {
+    title: 'Coaching Hub - Piattaforma per Personal Trainer e Coach Online',
+    description: 'Gestisci clienti, schede allenamento e piani alimentari in un\'unica piattaforma. Provalo gratis per 14 giorni.',
+    url: 'https://coachinghub.it',
+    siteName: 'Coaching Hub',
+    locale: 'it_IT',
+    type: 'website',
+    images: [
+      {
+        url: '/og-image.png',
+        width: 1200,
+        height: 630,
+        alt: 'Coaching Hub - La piattaforma tutto-in-uno per personal trainer',
+      },
+    ],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Coaching Hub - Piattaforma per Personal Trainer e Coach Online',
+    description: 'Gestisci clienti, schede allenamento e piani alimentari in un\'unica piattaforma. Provalo gratis per 14 giorni.',
+    images: ['/og-image.png'],
+  },
+  robots: {
+    index: true,
+    follow: true,
+  },
 }
 
 export default function RootLayout({
