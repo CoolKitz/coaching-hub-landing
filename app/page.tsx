@@ -666,10 +666,10 @@ const CookieBanner = ({ onAcceptAll, onRejectAll, onSavePreferences, onOpenCooki
 
 export default function LandingPage() {
   const LS_CHECKOUT_URLS: Record<string, string> = {
-    starter: 'https://coaching-hub.lemonsqueezy.com/checkout/buy/eb9be287-c2d8-40e8-8049-5bfabf36c48d',
-    professional: 'https://coaching-hub.lemonsqueezy.com/checkout/buy/faad0c93-c231-47d3-b7cf-9be08600f935',
-    business: 'https://coaching-hub.lemonsqueezy.com/checkout/buy/3d21da71-5423-4b99-9be5-284a2d037cb4',
-    enterprise: 'https://coaching-hub.lemonsqueezy.com/checkout/buy/dc5aaa1a-5050-456e-9c94-90ec6a377016'
+    starter: 'https://coaching-hub.lemonsqueezy.com/checkout/buy/58e06e8d-1c33-46ef-93c5-50c3a65a89d1',
+    professional: 'https://coaching-hub.lemonsqueezy.com/checkout/buy/785626e8-04db-4ded-8ea9-b0236818deaa',
+    business: 'https://coaching-hub.lemonsqueezy.com/checkout/buy/17d7fa34-a78e-4366-8e59-6270de13bc48',
+    enterprise: 'https://coaching-hub.lemonsqueezy.com/checkout/buy/c007414d-2ca2-45ee-80ff-1b9471e825dd'
   }
   
   const getCheckoutUrl = (planName: string) => {
