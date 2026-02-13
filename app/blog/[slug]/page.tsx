@@ -205,7 +205,7 @@ export default async function BlogPostPage({ params }: PageProps) {
       </footer>
       
       {/* Styles for article content */}
-      <style jsx global>{`
+      <style dangerouslySetInnerHTML={{ __html: `
         .prose-custom {
           color: rgba(255,255,255,0.7);
           font-size: 1.05rem;
@@ -258,7 +258,7 @@ export default async function BlogPostPage({ params }: PageProps) {
         .prose-custom a:hover {
           text-decoration: underline;
         }
-      `}</style>
+      `}} />
     </div>
   )
 }
