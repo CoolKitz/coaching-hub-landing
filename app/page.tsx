@@ -777,6 +777,7 @@ export default function LandingPage() {
               <a href="#prezzi" className="text-sm text-white/70 hover:text-white transition-colors">Prezzi</a>
               <a href="#faq" className="text-sm text-white/70 hover:text-white transition-colors">FAQ</a>
               <a href="#contatti" className="text-sm text-white/70 hover:text-white transition-colors">Contatti</a>
+              <a href="/blog" className="text-sm text-white/70 hover:text-white transition-colors">Blog</a>
               <a href="#prezzi" className="btn-primary text-sm !py-3 !px-6">Inizia Ora</a>
             </div>
             <button className="md:hidden p-2" onClick={() => setMobileMenuOpen(!mobileMenuOpen)}>
@@ -791,6 +792,7 @@ export default function LandingPage() {
               <a href="#prezzi" className="text-white/70 py-2" onClick={() => setMobileMenuOpen(false)}>Prezzi</a>
               <a href="#faq" className="text-white/70 py-2" onClick={() => setMobileMenuOpen(false)}>FAQ</a>
               <a href="#contatti" className="text-white/70 py-2" onClick={() => setMobileMenuOpen(false)}>Contatti</a>
+              <a href="/blog" className="text-white/70 py-2" onClick={() => setMobileMenuOpen(false)}>Blog</a>
               <a href="#prezzi" className="btn-primary text-center mt-2" onClick={() => setMobileMenuOpen(false)}>Inizia Ora</a>
             </div>
           </motion.div>
